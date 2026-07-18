@@ -1,0 +1,120 @@
+name: Update hourly
+
+# ทุกชั่วโมง จันทร์–ศุกร์ (นาทีที่ 5 เพื่อเลี่ยงช่วงที่ GitHub คิวแน่นตอนนาทีที่ 0)
+# หมายเหตุ: cron ของ GitHub Actions เป็น UTC และ **ดีเลย์ได้ 5–20 นาที** เป็นเรื่องปกติ
+# หน้าเว็บจึงแสดง data_as_of ชัดเจน และราคาสดใช้ TradingView widgets แทน (spec §4.2)
+on:
+  schedule:
+    - cron: '5 * * * 1-5'
+  workflow_dispatch:
+
+# กัน run ซ้อนกันเอง และซ้อนกับ workflow อื่นที่ commit ไฟล์เดียวกัน
+# ใช้ group ร่วมกันทั้ง 3 workflow เพราะทุกตัวเขียน data/*.json แล้ว push
+concurrency:
+  group: data-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # cache ของ parquet ช่วยลดการยิง API ซ้ำ — ไม่ใช่สิ่งจำเป็นเชิงความถูกต้อง
+      # (ถ้า cache หาย pipeline จะดึงสดเองได้ ดู _load_cached_cot / _load_cached_jgb)
+      - name: Restore raw data cache
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: ycm-raw-${{ github.run_id }}
+          restore-keys: |
+            ycm-raw-
+
+      # exit 0 = สำเร็จ · 2 = สำเร็จแต่ข้อมูลขาดบางส่วน (ใช้ค่าเก่า + ธง stale)
+      # · 1 = พังจริง → ให้ job ล้มเพื่อให้เห็นใน badge
+      - name: Run pipeline (hourly)
+        id: pipeline
+        run: |
+          set +e
+          python pipeline/run_all.py --mode hourly
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 1 ]; then
+            echo "::error::pipeline ล้มเหลว (exit 1)"
+            exit 1
+          fi
+          if [ "$code" -eq 2 ]; then
+            echo "::warning::ข้อมูลบางส่วนขาด — ใช้ค่าเก่าและติดธง stale (exit 2)"
+          fi
+          exit 0
+
+      - name: Send Telegram alert on level change
+        if: always() && steps.pipeline.outputs.exit_code != '1'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: python pipeline/alert.py
+
+      - name: Commit data if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # commit เฉพาะ JSON — ไม่เอา data/raw/*.parquet (อยู่ใน .gitignore)
+          git add data/*.json
+
+          if git diff --cached --quiet; then
+            echo "ไม่มีการเปลี่ยนแปลง — ข้ามการ commit"
+            exit 0
+          fi
+
+          git commit -m "data: hourly update $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          # workflow อื่นอาจ push แทรกระหว่างนี้ → rebase แล้วลองใหม่
+          for i in 1 2 3; do
+            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push; then
+              echo "push สำเร็จ (ครั้งที่ $i)"
+              exit 0
+            fi
+            echo "push ชนกัน — ลองใหม่ในอีก 5 วินาที"
+            sleep 5
+          done
+          echo "::error::push ไม่สำเร็จหลังลอง 3 ครั้ง"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Hourly update" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f data/latest.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d = json.load(open("data/latest.json"))
+          c = d.get("cusi") or {}
+          q = d.get("data_quality") or {}
+          print(f"- **CUSI**: {c.get('value')} ({c.get('level')})")
+          print(f"- **data_as_of**: {d.get('data_as_of')}")
+          print(f"- tickers: {q.get('tickers_ok')}/{q.get('tickers_total')} · jgb: {q.get('jgb_source')}")
+          print(f"- missing: {q.get('missing') or 'none'} · stale: {q.get('stale') or 'none'}")
+          PY
+          fi

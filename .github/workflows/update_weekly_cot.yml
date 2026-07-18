@@ -1,0 +1,129 @@
+name: Update weekly COT
+
+# 02:00 UTC วันเสาร์ = หลัง CFTC ประกาศ COT (ศุกร์ 15:30 ET = 20:30 UTC)
+# เผื่อเวลาไว้หลายชั่วโมงเพราะบางสัปดาห์ประกาศช้าเมื่อมีวันหยุดของสหรัฐ
+on:
+  schedule:
+    - cron: '0 2 * * 6'
+  workflow_dispatch:
+
+concurrency:
+  group: data-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Restore raw data cache
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: ycm-raw-${{ github.run_id }}
+          restore-keys: |
+            ycm-raw-
+
+      - name: Run pipeline (weekly — ดึง COT ใหม่จาก CFTC)
+        id: pipeline
+        run: |
+          set +e
+          python pipeline/run_all.py --mode weekly
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 1 ]; then
+            echo "::error::pipeline ล้มเหลว (exit 1)"
+            exit 1
+          fi
+          if [ "$code" -eq 2 ]; then
+            echo "::warning::ข้อมูลบางส่วนขาด (exit 2)"
+          fi
+          exit 0
+
+      # COT เป็น component เดียวที่ workflow นี้รับผิดชอบ — ถ้าไม่อัพเดทต้องรู้
+      - name: Verify COT freshness
+        run: |
+          python - <<'PY'
+          import json, pathlib, datetime, sys
+          p = pathlib.Path("data/latest.json")
+          if not p.is_file():
+              sys.exit(0)
+          cot = (json.loads(p.read_text(encoding="utf-8")).get("indicators") or {}).get("cot_jpy") or {}
+          rd = cot.get("report_date")
+          print(f"COT report_date = {rd} · net = {cot.get('net_position')}")
+          if not rd:
+              print("::warning::ไม่มี COT report_date — ตรวจสอบ CFTC API")
+              sys.exit(0)
+          age = (datetime.date.today() - datetime.date.fromisoformat(rd)).days
+          print(f"อายุรายงาน {age} วัน")
+          if age > 14:
+              print(f"::warning::COT เก่ากว่า 14 วัน ({rd}) — CFTC อาจเปลี่ยน API หรือหยุดประกาศ")
+          PY
+
+      - name: Send Telegram alert on level change
+        if: always() && steps.pipeline.outputs.exit_code != '1'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: python pipeline/alert.py
+
+      - name: Commit data if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/*.json
+
+          if git diff --cached --quiet; then
+            echo "ไม่มีการเปลี่ยนแปลง — ข้ามการ commit"
+            exit 0
+          fi
+
+          git commit -m "data: weekly COT update $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          for i in 1 2 3; do
+            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push; then
+              echo "push สำเร็จ (ครั้งที่ $i)"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::push ไม่สำเร็จหลังลอง 3 ครั้ง"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Weekly COT update" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f data/cot_history.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          h = json.load(open("data/cot_history.json"))
+          r = h.get("reports") or []
+          print(f"- รายงานทั้งหมด: {len(r)} สัปดาห์")
+          if r:
+              last = r[-1]
+              print(f"- ล่าสุด: {last['report_date']} · net {last['net_speculative']:,}")
+              print(f"- ใช้ได้ตั้งแต่: {last['available_from']}")
+          PY
+          fi

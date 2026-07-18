@@ -1,0 +1,9 @@
+# Yen Carry Monitor — Phase 1 pipeline dependencies (Python 3.11)
+pandas>=2.0,<3.0
+numpy>=1.24,<3.0
+yfinance>=0.2.40
+requests>=2.31
+PyYAML>=6.0
+pyarrow>=14.0        # parquet engine สำหรับ data/raw/*.parquet
+pytest>=8.0
+matplotlib>=3.7        # ใช้เฉพาะสคริปต์ตรวจสอบด้วยตา (scripts/plot_cusi.py)

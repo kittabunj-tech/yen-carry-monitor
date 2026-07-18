@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yen Carry Monitor</title>
+<!--
+  หน้านี้อยู่ที่ root ของ repo เพื่อให้ GitHub Pages (deploy from branch: main, folder: /)
+  มีหน้าแรกที่เปิดได้ทันที แล้วพาไปที่ site/
+
+  ทำไมต้อง deploy จาก root ไม่ใช่ /site:
+    * dashboard fetch ข้อมูลจาก ../data/  (site/index.html → /data/latest.json)
+    * ถ้าตั้ง Pages ให้ root = /site โฟลเดอร์ data/ จะไม่ถูก publish → หน้าเว็บว่างเปล่า
+    * deploy จาก root จึงได้ทั้ง site/ และ data/ โดยไม่ต้อง copy ไฟล์หรือเพิ่ม workflow
+  รายละเอียดใน DEPLOY_CHECKLIST.md
+-->
+<meta http-equiv="refresh" content="0; url=site/index.html">
+<link rel="canonical" href="site/index.html">
+<style>
+  body {
+    background: #0d1117;
+    color: #f0f6fc;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+  }
+  a { color: #58a6ff; }
+  .mark {
+    font-size: 34px;
+    font-weight: 700;
+    color: #0d1117;
+    background: linear-gradient(135deg, #d29922, #db6d28);
+    width: 56px; height: 56px;
+    display: grid; place-items: center;
+    border-radius: 10px;
+    margin: 0 auto 16px;
+  }
+  p { color: #8b949e; font-size: 14px; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="mark">¥</div>
+    <h1>Yen Carry Monitor</h1>
+    <p>กำลังพาไปที่ dashboard…</p>
+    <p><a href="site/index.html">คลิกที่นี่ถ้าไม่เปลี่ยนหน้าอัตโนมัติ</a></p>
+  </div>
+</body>
+</html>

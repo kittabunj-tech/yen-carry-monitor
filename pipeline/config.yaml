@@ -1,0 +1,255 @@
+# Yen Carry Trade Monitor — pipeline configuration
+# Single source of truth for tickers, windows and paths.
+# ห้าม hardcode ค่าเหล่านี้ในโค้ด — โหลดผ่าน pipeline.config.load_config()
+
+meta:
+  version: "1.0"
+  timezone: "Asia/Bangkok"          # ใช้ตอน stamp generated_at
+
+# ---------------------------------------------------------------- tickers
+# key = ชื่อภายในระบบ (ใช้เป็น key ใน latest.json)
+# ticker = symbol ของ yfinance
+# kind: fx | index | vol | yield | futures | crypto
+# intraday: ดึง 1h ด้วยหรือไม่
+tickers:
+  # --- §2.1 Core -------------------------------------------------
+  usdjpy:
+    ticker: "USDJPY=X"
+    name: "USD/JPY"
+    kind: fx
+    intraday: true
+  audjpy:
+    ticker: "AUDJPY=X"
+    name: "AUD/JPY"
+    kind: fx
+    intraday: true
+  ndx:
+    ticker: "^NDX"
+    name: "Nasdaq 100"
+    kind: index
+    intraday: true
+  spx:
+    ticker: "^GSPC"
+    name: "S&P 500"
+    kind: index
+    intraday: true
+  vix:
+    ticker: "^VIX"
+    name: "CBOE VIX"
+    kind: vol
+    intraday: true
+  # --- §2.2 Additional / leading --------------------------------
+  us10y:
+    ticker: "^TNX"
+    name: "US 10Y Yield"
+    kind: yield
+    intraday: false
+    scale: 1.0                      # ^TNX มาเป็น % อยู่แล้ว (4.21 = 4.21%)
+  us2y:
+    ticker: "2YY=F"
+    name: "US 2Y Yield Futures"
+    kind: yield
+    intraday: false
+    scale: 1.0
+  move:
+    ticker: "^MOVE"
+    name: "MOVE Index"
+    kind: vol
+    intraday: false
+  nikkei:
+    ticker: "^N225"
+    name: "Nikkei 225"
+    kind: index
+    intraday: true
+  mxnjpy:
+    ticker: "MXNJPY=X"
+    name: "MXN/JPY"
+    kind: fx
+    intraday: true
+  gold:
+    ticker: "GC=F"
+    name: "Gold Futures"
+    kind: futures
+    intraday: false
+  dxy:
+    ticker: "DX-Y.NYB"
+    name: "US Dollar Index"
+    kind: index
+    intraday: false
+  btc:
+    ticker: "BTC-USD"
+    name: "Bitcoin"
+    kind: crypto
+    intraday: true
+
+# ---------------------------------------------------------------- JGB §2.3
+# NOTE: URL ภาษาอังกฤษที่ระบุใน spec §2.3 ปัจจุบันคืน HTML 404 (ตรวจสอบแล้ว)
+# ของจริงอยู่บนเว็บภาษาญี่ปุ่น เป็น Shift-JIS + วันที่แบบศักราชญี่ปุ่น (R8.7.1):
+#   * mof_history_url = ประวัติทั้งหมดตั้งแต่ปี 1974 (~13,000 แถว) แต่อัพเดทช้ากว่า 1 เดือน
+#   * mof_current_url = เดือนปัจจุบันเท่านั้น (~14 แถว) แต่สดที่สุด
+# ต้องรวมสองไฟล์เพื่อให้ได้ทั้งความยาวและความสด
+jgb:
+  mof_history_url: "https://www.mof.go.jp/jgbs/reference/interest_rate/data/jgbcm_all.csv"
+  mof_current_url: "https://www.mof.go.jp/jgbs/reference/interest_rate/jgbcm.csv"
+  mof_encoding: "cp932"             # Shift-JIS (superset ที่ Windows ใช้)
+  mof_column: "10年"                 # header ของคอลัมน์ 10Y ในไฟล์ MOF
+  mof_missing_token: "-"            # MOF ใช้ "-" แทนค่าที่ไม่มี
+  # ศักราชญี่ปุ่น → ปี ค.ศ.: year = base + n  (S49=1974, H1=1989, R8=2026)
+  era_base:
+    S: 1925
+    H: 1988
+    R: 2018
+  # Fallback B — spec §2.3 เสนอ "JGB=F" แต่ตรวจสอบแล้วว่า **ไม่มีอยู่บน Yahoo**
+  # (JGB=F / JGBL=F / 2JGB=F คืนค่าว่างทั้งหมด) จึงใช้ JGB ETF เป็น proxy แทน
+  # 1482.T = iShares Core Japan Government Bond ETF (ราคาเคลื่อนสวนทางกับ yield)
+  fallback_ticker: "1482.T"
+  fallback_alternatives: ["2510.T", "2561.T"]
+  # แปลงราคา ETF → yield ด้วย modified duration โดย "ยึด" (anchor) กับค่า MOF ล่าสุดที่รู้:
+  #     yield_t ≈ anchor_yield − (P_t / P_anchor − 1) × 100 / duration
+  # แม่นเฉพาะระยะสั้นหลัง anchor — ใช้บอกทิศทาง ไม่ใช่ระดับจริง (flag ใน data_quality)
+  proxy:
+    duration_years: 12.0            # duration โดยประมาณของกองทุน JGB ระยะยาว
+    fallback_anchor_yield_pct: 2.7  # ใช้เมื่อไม่มี MOF cache ให้ยึดเลย
+  timeout_sec: 30
+
+# ---------------------------------------------------------------- COT §2.2 #11
+cot:
+  socrata_domain: "publicreporting.cftc.gov"
+  # Legacy futures-only (Commitments of Traders)
+  dataset_id: "6dca-aqww"
+  # กรองด้วย LIKE ก่อน (ทนต่อการเปลี่ยนชื่อ exchange) แล้วค่อยเลือกตามลำดับความชอบ
+  contract_like: "JAPANESE YEN"
+  contract_preference:
+    - "JAPANESE YEN - CHICAGO MERCANTILE EXCHANGE"
+    - "JAPANESE YEN - INTERNATIONAL MONETARY MARKET"
+  # COT วัดสถานะ ณ วันอังคาร แต่ประกาศบ่าย 3 วันศุกร์ (+3 วัน)
+  # ใช้คำนวณ available_from เพื่อกัน lookahead ใน Phase 2 (spec §5 Phase 2 ข้อ 3)
+  release_lag_days: 3
+  fields:
+    report_date: "report_date_as_yyyy_mm_dd"
+    long: "noncomm_positions_long_all"
+    short: "noncomm_positions_short_all"
+    contract: "market_and_exchange_names"
+  timeout_sec: 30
+  page_limit: 5000
+
+# ---------------------------------------------------------------- CUSI §3
+# น้ำหนักตามตาราง §3.2 (v1) — ต้องรวมกัน = 1.0 (validate ตอนโหลด)
+# sign: +1 = ค่าสูงอยู่แล้วแปลว่าเสี่ยง, -1 = ต้องกลับเครื่องหมาย
+#       ("ยิ่งสูง = ยิ่งเสี่ยง" ตามคอลัมน์ขวาสุดของตาราง §3.2)
+#
+# ═══════════════════════════════════════════════════════════════════════
+# PHASE 4 — FINAL: น้ำหนักด้านล่าง "ไม่ถูกแก้" หลัง backtest validation
+#
+#   backtest 2019-01-01 → 2026-07-17 (1,965 วันทำการ)
+#   เกณฑ์หลักของ spec §3.4 คือ Aug 2024 ต้องขึ้นถึง ≥ 80 → ได้จริง 84.1 (ผ่าน)
+#   COVID มี.ค. 2020 → 95.7 (UNWIND) · BOJ YCC ธ.ค. 2022 → 72.1 (STRESS)
+#
+# spec §5 Phase 4 อนุญาตให้ปรับน้ำหนักได้ 1 รอบ *เฉพาะกรณีที่ไม่ผ่าน*
+# เมื่อผ่านแล้วจึงจงใจไม่แตะ — น้ำหนักที่ไม่เคยถูก tune คือ out-of-sample
+# โดยธรรมชาติ ซึ่งเป็นทรัพย์สินที่ใช้แล้วหมดไป (spec §6 เตือนเรื่อง curve-fit)
+#
+# ถ้าจะปรับในอนาคต: อ่าน backtest/VALIDATION_REPORT.md ก่อน โดยเฉพาะหัวข้อ
+# 5b (ช่วงความเชื่อมั่นของ precision ทับซ้อนกันหมด → ยังแยกไม่ออกว่าอะไรดีกว่า)
+# ═══════════════════════════════════════════════════════════════════════
+cusi:
+  weights:
+    jpy_momentum:       0.20   # USDJPY ร่วงเร็ว = JPY แข็ง = unwind
+    audjpy_drawdown:    0.15   # drawdown จาก 20d high ลึก
+    spread_compression: 0.15   # (US10Y − JGB10Y) แคบลงเร็ว
+    vix:                0.15   # 0.5×z(level) + 0.5×z(5d change)
+    fx_realized_vol:    0.10   # vol ระเบิด
+    cot_positioning:    0.10   # short JPY หนาแน่น = เชื้อเพลิงเยอะ
+    move:               0.05   # bond vol นำ FX vol
+    nikkei_momentum:    0.05   # Nikkei ร่วงเร็ว
+    mxnjpy_drawdown:    0.05   # canary ส่งเสียงก่อน
+
+  # แปลง weighted z → 0–100: CUSI = center + (z / divisor) × span, clip [floor, ceiling]
+  scale:
+    center: 50.0
+    divisor: 3.0
+    span: 50.0
+    floor: 0.0
+    ceiling: 100.0
+
+  # ระดับ alert §3.3 — ขอบบนเป็นแบบ "ไม่รวม" (v < max) ยกเว้นระดับสุดท้าย
+  levels:
+    - {name: "CALM",   max: 40.0, color: "#3fb950", emoji: "🟢"}
+    - {name: "WATCH",  max: 60.0, color: "#d29922", emoji: "🟡"}
+    - {name: "STRESS", max: 80.0, color: "#db6d28", emoji: "🟠"}
+    - {name: "UNWIND", max: 100.1, color: "#f85149", emoji: "🔴"}
+
+  # ถ้าวันไหน component ขาด → re-normalize น้ำหนักที่เหลือ
+  # แต่ต้องมีน้ำหนักครบอย่างน้อยสัดส่วนนี้ ไม่งั้น CUSI วันนั้นเป็น null
+  # (กันกรณีเหลือแค่ 1–2 components แล้วได้ตัวเลขที่ดูน่าเชื่อถือแต่ไม่มีความหมาย)
+  min_weight_coverage: 0.5
+
+  # COT เป็น weekly → คำนวณ z บนความถี่ weekly (52 สัปดาห์ ≈ 252 วันทำการ)
+  # แล้วค่อย forward-fill เป็น daily — ไม่คำนวณ z บน series ที่ ffill แล้ว
+  # เพราะค่าซ้ำ ๆ จะบิด std ให้แคบผิดปกติ
+  cot_z_window_weeks: 52
+
+  # จำนวนวันสูงสุดที่ยอมให้ forward-fill ค่า COT (กันข้อมูลค้างนานผิดปกติ)
+  cot_max_ffill_days: 14
+
+  alert_jump_threshold: 10.0   # §4.6 CUSI กระโดด >10 จุดใน 1 วัน = alert
+
+  # บันทึกผล validation (ไม่มีโค้ดอ่านค่านี้ — ไว้ให้คนอ่านและ audit ย้อนหลัง)
+  validation:
+    phase: 4
+    run_date: "2026-07-18"
+    period: "2019-01-01 → 2026-07-17"
+    trading_days: 1965
+    weights_changed: false      # ← จงใจไม่แก้ ดูเหตุผลด้านบน
+    aug_2024_peak: 84.1         # spec §3.4 ต้อง ≥ 80
+    covid_2020_peak: 95.7
+    boj_ycc_2022_peak: 72.1
+    precision_at_60_pct: 21.1   # ข้อจำกัดที่รู้อยู่ — เตือนบ่อยกว่าที่เกิดจริงมาก
+    recall_at_60_pct: 58.8
+    report: "backtest/VALIDATION_REPORT.md"
+
+# ---------------------------------------------------------------- windows §2.4 / §3.2
+parameters:
+  # ต้องดึง 4 ปี เพื่อให้ได้ CUSI ครบ 3 ปี:
+  # z-score กิน warm-up 252 วันทำการ (~1 ปี) แรกไปเป็น NaN
+  # ถ้าดึงแค่ 3 ปีจะเหลือ CUSI จริงแค่ ~2 ปี
+  history_years: 4                  # daily lookback
+  intraday_period: "5d"             # ช่วงที่ดึง 1h (yfinance จำกัด ~730d)
+  intraday_interval: "1h"
+  trading_days_per_year: 252
+
+  z_window: 252                     # §3.2 z-score rolling window
+  z_clip: 3.0                       # clip ±3
+  vol_window: 10                    # realized_vol_10d
+  vol_of_vol_window: 20
+  atr_window: 14
+  drawdown_window: 20               # dd from 20d high
+  momentum_window: 5                # 5d return
+  spread_change_window: 20          # Δ20d ของ spread
+  percentile_window: 756            # 3 ปี ≈ 252*3 สำหรับ percentile_3y
+  history_days: 90                  # indicators_history.json rolling window
+
+# ---------------------------------------------------------------- network §4.7
+fetch:
+  retries: 3
+  backoff_base_sec: 2.0             # exponential: 2, 4, 8
+  backoff_max_sec: 30.0
+  batch_size: 8                     # ticker ต่อ 1 batch download
+  stale_after_hours: 26             # เกินนี้ถือว่า stale ใน data_quality
+
+# ---------------------------------------------------------------- paths §4.3
+# relative กับ repo root (โฟลเดอร์แม่ของ pipeline/)
+paths:
+  data_dir: "data"
+  raw_dir: "data/raw"
+  latest_json: "data/latest.json"
+  cusi_history_json: "data/cusi_history.json"
+  indicators_history_json: "data/indicators_history.json"
+  cot_history_json: "data/cot_history.json"
+  jgb_parquet: "data/raw/jgb10y.parquet"
+  cot_parquet: "data/raw/cot_jpy.parquet"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)-7s | %(name)-16s | %(message)s"
+  datefmt: "%Y-%m-%d %H:%M:%S"

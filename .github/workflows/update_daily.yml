@@ -1,0 +1,141 @@
+name: Update daily
+
+# 23:30 UTC จันทร์–ศุกร์ = หลัง US close (16:00 ET) และก่อนตลาดญี่ปุ่นเปิด
+# โหมด daily จะดึง MOF JGB สด + คำนวณ cusi_history ย้อนหลังใหม่ทั้งชุด
+on:
+  schedule:
+    - cron: '30 23 * * 1-5'
+  workflow_dispatch:
+
+concurrency:
+  group: data-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Restore raw data cache
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: ycm-raw-${{ github.run_id }}
+          restore-keys: |
+            ycm-raw-
+
+      - name: Run pipeline (daily)
+        id: pipeline
+        run: |
+          set +e
+          python pipeline/run_all.py --mode daily
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -eq 1 ]; then
+            echo "::error::pipeline ล้มเหลว (exit 1)"
+            exit 1
+          fi
+          if [ "$code" -eq 2 ]; then
+            echo "::warning::ข้อมูลบางส่วนขาด (exit 2)"
+          fi
+          exit 0
+
+      # ตรวจขนาดไฟล์ JSON กัน repo บวมโดยไม่รู้ตัว (spec §4.7)
+      # indicators_history ถูกจำกัด 90 วันโดย config อยู่แล้ว (parameters.history_days)
+      # ส่วน cusi_history เก็บ 3 ปี **โดยตั้งใจ** เพราะกราฟหน้าเว็บต้องใช้ 1Y+
+      - name: Check output sizes
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          limits = {                     # KB
+              "latest.json": 100,
+              "indicators_history.json": 300,
+              "cusi_history.json": 400,
+              "cot_history.json": 300,
+              "alerts.json": 100,
+          }
+          problems = []
+          for name, limit in limits.items():
+              p = pathlib.Path("data") / name
+              if not p.is_file():
+                  continue
+              kb = p.stat().st_size / 1024
+              flag = "⚠️" if kb > limit else "✓"
+              print(f"{flag} {name}: {kb:.1f} KB (จำกัด {limit} KB)")
+              if kb > limit:
+                  problems.append(f"{name} = {kb:.0f} KB")
+          if problems:
+              print("::warning::ไฟล์ใหญ่เกินคาด: " + ", ".join(problems))
+          # ยืนยันว่า indicators_history ถูก prune ตาม config จริง
+          h = pathlib.Path("data/indicators_history.json")
+          if h.is_file():
+              d = json.loads(h.read_text(encoding="utf-8"))
+              print(f"indicators_history: {len(d.get('dates', []))} วัน (window_days={d.get('window_days')})")
+          PY
+
+      - name: Send Telegram alert on level change
+        if: always() && steps.pipeline.outputs.exit_code != '1'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+        run: python pipeline/alert.py
+
+      - name: Commit data if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/*.json
+
+          if git diff --cached --quiet; then
+            echo "ไม่มีการเปลี่ยนแปลง — ข้ามการ commit"
+            exit 0
+          fi
+
+          git commit -m "data: daily update $(date -u '+%Y-%m-%d %H:%M UTC')"
+
+          for i in 1 2 3; do
+            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push; then
+              echo "push สำเร็จ (ครั้งที่ $i)"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::push ไม่สำเร็จหลังลอง 3 ครั้ง"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Daily update" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f data/cusi_history.json ]; then
+            python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          d = json.load(open("data/latest.json"))
+          h = json.load(open("data/cusi_history.json"))
+          c = d.get("cusi") or {}
+          print(f"- **CUSI**: {c.get('value')} ({c.get('level')}) · Δ1d {c.get('change_1d')}")
+          print(f"- cusi_history: {h.get('count')} วัน")
+          print(f"- jgb source: {(d.get('data_quality') or {}).get('jgb_source')}")
+          PY
+          fi

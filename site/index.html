@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yen Carry Monitor — CUSI Dashboard</title>
+<meta name="description" content="Dashboard เฝ้าระวังสถานการณ์ Yen Carry Trade Unwind — CUSI (Carry Unwind Stress Index) + ตัวชี้วัดที่เกี่ยวข้อง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>¥</text></svg>">
+</head>
+<body>
+
+<!-- ══════════════════════════════ HEADER ══════════════════════════════ -->
+<header class="header">
+  <div class="header__main">
+    <div class="header__brand">
+      <span class="header__mark">¥</span>
+      <div>
+        <h1 class="header__title">Yen Carry Monitor</h1>
+        <p class="header__sub">Carry Unwind Stress Index — เฝ้าระวังสถานการณ์ unwind แบบต่อเนื่อง</p>
+      </div>
+    </div>
+
+    <div class="header__meta">
+      <div class="stamp">
+        <span class="stamp__label">ข้อมูล ณ</span>
+        <span class="stamp__value" id="data-as-of">—</span>
+      </div>
+      <div class="stamp">
+        <span class="stamp__label">อัพเดทล่าสุด</span>
+        <span class="stamp__value" id="generated-at">—</span>
+      </div>
+      <button class="refresh-btn" id="refresh-btn" type="button" title="ดึงข้อมูลใหม่ทันที">
+        <span class="refresh-btn__icon" aria-hidden="true">⟳</span> รีเฟรช
+      </button>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    ⚠️ ข้อมูลเพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำการลงทุน — ผู้ใช้ต้องตรวจสอบข้อมูลด้วยตนเองก่อนตัดสินใจ
+  </p>
+
+  <!-- ธงเตือนคุณภาพข้อมูล (ซ่อนเมื่อทุกอย่างปกติ) -->
+  <div class="quality-bar" id="quality-bar" hidden></div>
+</header>
+
+<main class="container">
+
+  <!-- ═══════════════════ ROW 1 — CUSI GAUGE + HISTORY ═══════════════════ -->
+  <section class="row row--hero">
+
+    <!-- CUSI gauge -->
+    <article class="card card--gauge" id="gauge-card">
+      <header class="card__head">
+        <h2 class="card__title">CUSI</h2>
+        <span class="card__hint" title="Carry Unwind Stress Index — composite z-score 0–100">
+          ตอนนี้เสี่ยง unwind แค่ไหน?
+        </span>
+      </header>
+
+      <div class="gauge">
+        <svg class="gauge__svg" viewBox="0 0 320 190" role="img" aria-labelledby="gauge-title">
+          <title id="gauge-title">มาตรวัด CUSI</title>
+          <!-- แถบระดับ 4 สี (วาดโดย app.js จาก cusi_history.levels) -->
+          <g id="gauge-bands"></g>
+          <!-- ขีดบอกระดับ -->
+          <g id="gauge-ticks"></g>
+          <!-- เข็ม -->
+          <g id="gauge-needle">
+            <line id="needle-line" x1="160" y1="160" x2="160" y2="60"
+                  stroke="#f0f6fc" stroke-width="3.5" stroke-linecap="round"/>
+            <circle cx="160" cy="160" r="9" fill="#161b22" stroke="#f0f6fc" stroke-width="2.5"/>
+          </g>
+        </svg>
+
+        <div class="gauge__readout">
+          <div class="gauge__value num" id="cusi-value">—</div>
+          <div class="gauge__level" id="cusi-level">กำลังโหลด…</div>
+          <div class="gauge__delta num" id="cusi-change">Δ1d —</div>
+        </div>
+      </div>
+
+      <!-- component contribution bars -->
+      <div class="components">
+        <h3 class="components__title">
+          Component Contributions
+          <span class="components__note">weight × z · เรียงจากมากไปน้อย</span>
+        </h3>
+        <div class="components__list" id="components-list">
+          <div class="skeleton skeleton--bar"></div>
+          <div class="skeleton skeleton--bar"></div>
+          <div class="skeleton skeleton--bar"></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- CUSI history -->
+    <article class="card card--chart">
+      <header class="card__head">
+        <h2 class="card__title">CUSI History</h2>
+        <div class="chart-toolbar" id="cusi-range-toolbar" role="group" aria-label="ช่วงเวลา">
+          <button type="button" class="chip" data-range="90">3M</button>
+          <button type="button" class="chip" data-range="252">1Y</button>
+          <button type="button" class="chip is-active" data-range="all">ทั้งหมด</button>
+        </div>
+      </header>
+      <div class="chart-wrap chart-wrap--tall">
+        <canvas id="chart-cusi"></canvas>
+      </div>
+      <p class="card__foot" id="cusi-history-foot">—</p>
+    </article>
+  </section>
+
+  <!-- ═══════════════ ROW 2 — REAL-TIME (TradingView widgets) ═══════════════ -->
+  <section class="row row--section">
+    <header class="section-head">
+      <h2 class="section-head__title">Real-time</h2>
+      <p class="section-head__sub">
+        ราคาสดจาก TradingView (delay 0–15 นาทีตาม exchange) — แยกจากตัวเลขที่ pipeline คำนวณด้านบน
+      </p>
+    </header>
+    <div class="tv-grid" id="tv-grid"><!-- widgets ถูกฉีดโดย app.js --></div>
+    <noscript><p class="card__foot">ต้องเปิด JavaScript เพื่อแสดง widget ราคาสด</p></noscript>
+  </section>
+
+  <!-- ═══════════════ ROW 3 — COMPUTED PANELS (Chart.js) ═══════════════ -->
+  <section class="row row--section">
+    <header class="section-head">
+      <h2 class="section-head__title">Computed Panels</h2>
+      <p class="section-head__sub">คำนวณจาก pipeline — ทุกค่าใช้ข้อมูลถึงวันนั้นเท่านั้น (ไม่มี lookahead)</p>
+    </header>
+
+    <div class="grid grid--panels">
+      <article class="card">
+        <header class="card__head">
+          <h3 class="card__title card__title--sm">US–JP 10Y Spread</h3>
+          <span class="card__badge num" id="spread-badge">—</span>
+        </header>
+        <div class="chart-wrap"><canvas id="chart-spread"></canvas></div>
+        <p class="card__foot" id="spread-foot">—</p>
+      </article>
+
+      <article class="card">
+        <header class="card__head">
+          <h3 class="card__title card__title--sm">FX Realized Vol (10d)</h3>
+          <span class="card__badge num" id="fxvol-badge">—</span>
+        </header>
+        <div class="chart-wrap"><canvas id="chart-fxvol"></canvas></div>
+        <p class="card__foot" id="fxvol-foot">—</p>
+      </article>
+
+      <article class="card">
+        <header class="card__head">
+          <h3 class="card__title card__title--sm">COT — JPY Net Speculative</h3>
+          <span class="card__badge num" id="cot-badge">—</span>
+        </header>
+        <div class="chart-wrap"><canvas id="chart-cot"></canvas></div>
+        <p class="card__foot" id="cot-foot">—</p>
+      </article>
+
+      <article class="card">
+        <header class="card__head">
+          <h3 class="card__title card__title--sm">MOVE vs VIX</h3>
+          <span class="card__badge num" id="movevix-badge">—</span>
+        </header>
+        <div class="chart-wrap"><canvas id="chart-movevix"></canvas></div>
+        <p class="card__foot" id="movevix-foot">—</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════ INDICATORS TABLE ═══════════════ -->
+  <section class="row row--section">
+    <header class="section-head">
+      <h2 class="section-head__title">Indicators</h2>
+      <p class="section-head__sub">ค่าล่าสุดของทุกตัวชี้วัดใน data universe (§2.1–2.2)</p>
+    </header>
+    <article class="card card--table">
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ตัวชี้วัด</th>
+              <th scope="col" class="ta-r">ล่าสุด</th>
+              <th scope="col" class="ta-r">Δ 1d</th>
+              <th scope="col" class="ta-r">Δ 5d</th>
+              <th scope="col" class="ta-r">เพิ่มเติม</th>
+            </tr>
+          </thead>
+          <tbody id="indicators-body">
+            <tr><td colspan="5" class="td-empty">กำลังโหลด…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <!-- ═══════════════ ROW 4 — ALERTS + METHODOLOGY ═══════════════ -->
+  <section class="row row--section">
+    <div class="grid grid--footer">
+
+      <article class="card">
+        <header class="card__head">
+          <h2 class="card__title card__title--sm">Alert Log</h2>
+          <span class="card__hint">เปลี่ยนระดับ CUSI หรือกระโดด &gt;10 จุดใน 1 วัน</span>
+        </header>
+        <div id="alerts-list" class="alerts">
+          <p class="empty-state">กำลังโหลด…</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <details class="methodology">
+          <summary class="methodology__summary">
+            <span class="card__title card__title--sm">Methodology</span>
+            <span class="methodology__chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="methodology__body">
+            <h4>CUSI คำนวณอย่างไร</h4>
+            <p>
+              รวม 9 components เป็น composite z-score ถ่วงน้ำหนัก แล้วแปลงเป็นสเกล 0–100:
+              <code>CUSI = 50 + (weighted_z / 3) × 50</code> (clip 0–100)
+              โดย z-score ใช้หน้าต่าง <strong>252 วันทำการ</strong> clip ที่ ±3
+              และทุก component ถูกปรับทิศทางให้ <strong>ค่าบวก = เสี่ยงมากขึ้น</strong> เสมอ
+            </p>
+
+            <h4>น้ำหนักแต่ละ component</h4>
+            <ul class="methodology__weights" id="methodology-weights">
+              <li>กำลังโหลด…</li>
+            </ul>
+
+            <h4>ระดับ Alert</h4>
+            <ul class="methodology__levels" id="methodology-levels"></ul>
+
+            <h4>ข้อควรรู้</h4>
+            <ul>
+              <li>
+                <strong>ไม่มี lookahead</strong> — ค่าที่วัน <em>t</em> ใช้ข้อมูลถึงวัน <em>t</em> เท่านั้น
+                ข้อมูล COT (วัดวันอังคาร ประกาศบ่ายวันศุกร์) ถูก forward-fill จาก
+                <em>วันที่ประกาศ</em> ไม่ใช่วันที่วัด
+              </li>
+              <li>
+                <strong>Re-normalization</strong> — วันไหน component ขาด (เช่น MOVE ค้าง)
+                ระบบจะเฉลี่ยเฉพาะน้ำหนักที่มีข้อมูลจริง ไม่ใช่แทนค่าด้วย z = 0
+              </li>
+              <li>
+                <strong>JGB 10Y</strong> มาจาก MOF ญี่ปุ่น (ทางการ) — ถ้า MOF ล่ม จะสลับไปใช้
+                ETF proxy และติดธงเตือนไว้บนหัวเว็บ
+              </li>
+              <li>
+                <strong>Real-time vs Computed</strong> — widget แถวที่ 2 เป็นราคาสดจาก TradingView
+                ส่วน CUSI และตารางด้านล่างมาจาก pipeline ที่รันเป็นรอบ จึงอาจต่างกันได้ตามเวลา
+              </li>
+            </ul>
+          </div>
+        </details>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>
+    Yen Carry Monitor · ข้อมูล: Yahoo Finance, MOF Japan, CFTC · แสดงผลราคาสดโดย TradingView
+  </p>
+  <p class="footer__disclaimer">
+    ข้อมูลเพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำการลงทุน
+  </p>
+</footer>
+
+<!-- error banner -->
+<div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
