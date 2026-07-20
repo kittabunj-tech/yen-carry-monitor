@@ -636,6 +636,95 @@
     }).join("");
   }
 
+  /* ========================== EVENTS (Phase 6C) ========================== */
+
+  /** ชื่อสั้นของ event แต่ละประเภทบนแถบ */
+  var EVENT_SHORT = { boj_mpm: "BOJ MPM", fomc: "FOMC", jp_cpi: "JP CPI" };
+
+  /**
+   * จำนวนวันจากวันนี้ (เที่ยงคืน local) ถึงวันที่ ISO — คำนวณฝั่ง client
+   * เพื่อให้ countdown สดเสมอแม้ latest.json จะสร้างไว้หลายชั่วโมงก่อน
+   * @param {string} iso - "YYYY-MM-DD"
+   * @returns {number|null}
+   */
+  function daysFromToday(iso) {
+    if (!iso) return null;
+    var parts = String(iso).split("-");
+    if (parts.length !== 3) return null;
+    var target = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((target - today) / 86400000);
+  }
+
+  /**
+   * ข้อความ countdown ภาษาไทย
+   * @param {number|null} d - จำนวนวัน
+   * @returns {string}
+   */
+  function countdownText(d) {
+    if (d === null) return "";
+    if (d < 0) return "ผ่านแล้ว";
+    if (d === 0) return "วันนี้";
+    if (d === 1) return "พรุ่งนี้";
+    return "อีก " + d + " วัน";
+  }
+
+  /** วาดแถบเหตุการณ์ + ธง event risk (จาก latest.events — field ใหม่ Phase 6C) */
+  function renderEvents() {
+    var bar = $("events-bar");
+    if (!bar) return;
+
+    var ev = state.latest && state.latest.events;
+    // ผู้อ่านเก่า/ข้อมูลเก่าที่ไม่มี field นี้ → ซ่อนแถบเฉย ๆ (backward compatible)
+    if (!ev || !Array.isArray(ev.upcoming) || !ev.upcoming.length) {
+      bar.hidden = true;
+      return;
+    }
+
+    var windowDays = isNum(ev.risk_window_days) ? ev.risk_window_days : 3;
+    var riskKeys = {};
+    (ev.risk_events || []).forEach(function (r) { riskKeys[r.type + ":" + r.date] = true; });
+
+    var html = "";
+    // ธงใหญ่เมื่อ risk ทำงาน — คำนวณซ้ำฝั่ง client จากวันเริ่มประชุม
+    // (server คำนวณไว้ตอน generate ซึ่งอาจข้ามเที่ยงคืนไปแล้ว)
+    var anyRisk = false;
+
+    var chips = ev.upcoming.map(function (e) {
+      var toStart = daysFromToday(e.start_date || e.date);
+      var toEnd = daysFromToday(e.date);
+      if (toEnd !== null && toEnd < 0) return "";        // จบไปแล้วระหว่างวัน
+
+      var isMeeting = e.type === "boj_mpm" || e.type === "fomc";
+      var inWindow = isMeeting && toStart !== null && toEnd !== null &&
+                     toStart <= windowDays && toEnd >= 0;
+      var serverSaysRisk = !!riskKeys[e.type + ":" + e.date];
+      var risk = inWindow || serverSaysRisk;
+      if (risk) anyRisk = true;
+
+      var cls = "evt" + (risk ? " evt--risk" : "") +
+                (toStart === 0 || toEnd === 0 ? " evt--today" : "");
+      var count = countdownText(toStart !== null && toStart >= 0 ? toStart : toEnd);
+
+      return "<span class='" + cls + "' title='" + esc(e.label) + " · " + esc(e.date) +
+             (e.approx ? " (วันที่โดยประมาณ)" : "") + "'>" +
+             "<span class='evt__label'>" + esc(EVENT_SHORT[e.type] || e.label) + "</span>" +
+             "<span class='evt__count'>" + esc(count) + "</span>" +
+             (e.approx ? "<span class='evt__approx'>≈</span>" : "") +
+             "</span>";
+    }).join("");
+
+    if (anyRisk) {
+      html += "<span class='evt evt--flag'>⚠️ EVENT RISK — มีการประชุมนโยบายใน " +
+              windowDays + " วัน</span>";
+    }
+    html += chips;
+
+    bar.innerHTML = html;
+    bar.hidden = !html;
+  }
+
   /* ========================== HEADER / QUALITY ========================== */
 
   /** อัพเดท timestamp + ธงคุณภาพข้อมูล */
@@ -881,6 +970,7 @@
   /** วาดทุกอย่างจาก state ปัจจุบัน */
   function renderAll() {
     renderHeader();
+    renderEvents();
     drawGaugeBands();
     renderGauge();
     renderComponents();

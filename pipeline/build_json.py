@@ -17,6 +17,7 @@ from pipeline import indicators as ind
 from pipeline.config import get_logger, load_config, resolve_path
 from pipeline.cusi import build_cusi_block, build_cusi_frame, build_cusi_history, load_weights
 from pipeline.fetch_cot import cot_series
+from pipeline.fetch_events import build_events_block, fetch_events
 from pipeline.fetch_jgb import jgb_series
 from pipeline.fetch_market import FetchResult, close_series
 
@@ -348,6 +349,7 @@ def build_latest_json(
     df: pd.DataFrame,
     cfg: Dict[str, Any],
     cusi_block: Optional[Dict[str, Any]] = None,
+    events_block: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """ประกอบ payload ทั้งหมดของ ``data/latest.json`` (spec §4.4).
 
@@ -360,6 +362,7 @@ def build_latest_json(
         cfg: config dict
         cusi_block: block ``cusi`` จาก :func:`~pipeline.cusi.build_cusi_block`
             (``None`` ถ้าคำนวณไม่ได้ → JSON จะเป็น ``null`` ตาม schema)
+        events_block: block ``events`` (Phase 6C — field ใหม่, additive)
 
     Returns:
         dict ตาม schema §4.4
@@ -380,6 +383,8 @@ def build_latest_json(
         "indicators": build_indicators_block(df, jgb_source, cot_df, cfg),
         "alerts": [],  # Phase 5
         "data_quality": build_data_quality(market, jgb_source, cot_df, df, cfg),
+        # Phase 6C — field ใหม่ (backward compatible: ผู้อ่านเก่าไม่รู้จักก็ข้ามไป)
+        "events": events_block,
     }
 
 
@@ -475,6 +480,7 @@ def build_all(
     *,
     write_cot: bool = True,
     write_cusi_history: bool = True,
+    fetch_network_events: bool = True,
 ) -> Dict[str, Any]:
     """ประกอบและเขียนไฟล์ JSON ทั้งหมดในรอบเดียว.
 
@@ -486,6 +492,7 @@ def build_all(
         cfg: config dict; ``None`` = โหลดเอง
         write_cot: เขียน cot_history.json ด้วยหรือไม่ (โหมด weekly)
         write_cusi_history: เขียน cusi_history.json ด้วยหรือไม่ (โหมด daily/weekly)
+        fetch_network_events: ยิง network ดึงปฏิทิน BOJ/FOMC ใหม่หรือไม่ (โหมด hourly = False)
 
     Returns:
         payload ของ latest.json
@@ -493,6 +500,16 @@ def build_all(
     cfg = cfg if cfg is not None else load_config()
 
     df = build_indicator_frame(market, jgb_df, cfg)
+
+    # ---- Events (Phase 6C) — additive: field ใหม่ ห้ามกระทบของเดิม
+    # ปฏิทินเปลี่ยนปีละครั้ง → ยิง network เฉพาะโหมด daily/weekly (fetch_network_events)
+    # โหมด hourly อ่าน cache แต่คำนวณธง risk ใหม่ทุกรอบ (ธงขึ้นกับ "วันนี้")
+    events_block: Optional[Dict[str, Any]] = None
+    try:
+        payload = fetch_events(cfg, use_network=fetch_network_events)
+        events_block = build_events_block(payload, cfg)
+    except Exception:
+        log.exception("event layer ล้มเหลว — latest.json จะไม่มี field events รอบนี้")
 
     # ---- CUSI (Phase 2) — ถ้าพังต้องไม่ทำให้ข้อมูลส่วนอื่นหายไปทั้งไฟล์
     cusi_block: Optional[Dict[str, Any]] = None
@@ -504,7 +521,7 @@ def build_all(
     except Exception:
         log.exception("CUSI computation failed — latest.json will carry cusi=null")
 
-    latest = build_latest_json(market, jgb_df, jgb_source, cot_df, df, cfg, cusi_block)
+    latest = build_latest_json(market, jgb_df, jgb_source, cot_df, df, cfg, cusi_block, events_block)
 
     write_json(latest, resolve_path(cfg, "latest_json", mkdir=True))
     write_json(build_history_json(df, cfg), resolve_path(cfg, "indicators_history_json", mkdir=True))

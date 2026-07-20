@@ -167,6 +167,55 @@ code {
 .flag--danger { color: var(--unwind); border-color: rgba(248,81,73,.45);   background: rgba(248,81,73,.09); }
 .flag--ok     { color: var(--calm);   border-color: rgba(63,185,80,.4);    background: rgba(63,185,80,.08); }
 
+/* ── Phase 6C: event strip (BOJ MPM / FOMC / CPI) ── */
+
+.events-bar {
+  max-width: 1600px;
+  margin: 8px auto 0;
+  padding-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.events-bar[hidden] { display: none; }
+
+.evt {
+  font-size: 11.5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  white-space: nowrap;
+}
+.evt__label { color: var(--text); font-weight: 500; }
+.evt__count { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.evt__approx { color: var(--text-dim); font-size: 10.5px; }
+
+/* เหตุการณ์ที่อยู่ในหน้าต่างเสี่ยง — เด่นสุดในแถบ */
+.evt--risk {
+  color: var(--stress);
+  border-color: rgba(219,109,40,.55);
+  background: rgba(219,109,40,.10);
+}
+.evt--risk .evt__label { color: var(--stress); }
+
+/* ป้ายหัวแถบเมื่อธงขึ้น */
+.evt--flag {
+  color: var(--unwind);
+  border-color: rgba(248,81,73,.5);
+  background: rgba(248,81,73,.10);
+  font-weight: 600;
+  animation: evt-pulse 2.4s ease-in-out infinite;
+}
+@keyframes evt-pulse { 0%,100% { opacity: 1; } 50% { opacity: .65; } }
+
+.evt--today { color: var(--unwind); border-color: rgba(248,81,73,.5); }
+
 /* header ต้องไม่ sticky ตอนพิมพ์/จอเตี้ย */
 @media (max-height: 620px) { .header { position: static; } }
 

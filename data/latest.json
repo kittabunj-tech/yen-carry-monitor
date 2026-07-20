@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-20T13:56:34+07:00",
+  "generated_at": "2026-07-20T14:49:49+07:00",
   "data_as_of": "2026-07-20T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 46.5,
+    "value": 48.6,
     "level": "WATCH",
     "level_color": "#d29922",
     "level_emoji": "🟡",
-    "change_1d": null,
-    "as_of": "2026-07-20",
+    "change_1d": 1.7,
+    "as_of": "2026-07-17",
     "weights": {
       "jpy_momentum": 0.2,
       "audjpy_drawdown": 0.15,
@@ -25,45 +25,69 @@
         "z": 1.392,
         "weight": 0.1,
         "contribution": 0.1392,
-        "share_pct": 32.5
+        "share_pct": 15.4
       },
-      "mxnjpy_drawdown": {
-        "z": 0.255,
+      "vix": {
+        "z": 0.796,
+        "weight": 0.15,
+        "contribution": 0.1193,
+        "share_pct": 13.2
+      },
+      "nikkei_momentum": {
+        "z": 2.254,
         "weight": 0.05,
-        "contribution": 0.0127,
-        "share_pct": 3.0
+        "contribution": 0.1127,
+        "share_pct": 12.5
       },
       "jpy_momentum": {
-        "z": -0.123,
+        "z": 0.187,
         "weight": 0.2,
-        "contribution": -0.0246,
-        "share_pct": 5.8
+        "contribution": 0.0373,
+        "share_pct": 4.1
+      },
+      "move": {
+        "z": -0.314,
+        "weight": 0.05,
+        "contribution": -0.0157,
+        "share_pct": 1.7
+      },
+      "mxnjpy_drawdown": {
+        "z": -0.975,
+        "weight": 0.05,
+        "contribution": -0.0487,
+        "share_pct": 5.4
       },
       "fx_realized_vol": {
-        "z": -1.143,
+        "z": -1.15,
         "weight": 0.1,
-        "contribution": -0.1143,
-        "share_pct": 26.7
+        "contribution": -0.115,
+        "share_pct": 12.7
       },
       "audjpy_drawdown": {
-        "z": -0.917,
+        "z": -1.008,
         "weight": 0.15,
-        "contribution": -0.1375,
-        "share_pct": 32.1
+        "contribution": -0.1512,
+        "share_pct": 16.8
+      },
+      "spread_compression": {
+        "z": -1.089,
+        "weight": 0.15,
+        "contribution": -0.1633,
+        "share_pct": 18.1
       }
     }
   },
   "indicators": {
     "usdjpy": {
-      "last": 162.403,
-      "chg_1d_pct": 0.02,
-      "chg_5d_pct": 0.32,
-      "z_5d": 0.12
+      "last": 162.376,
+      "chg_1d_pct": 0.19,
+      "chg_5d_pct": 0.01,
+      "z_5d": -0.19
     },
     "audjpy": {
-      "last": 113.534,
-      "chg_1d_pct": -0.07,
-      "dd_from_20d_high_pct": -0.07
+      "last": 113.619,
+      "chg_1d_pct": 0.06,
+      "dd_from_20d_high_pct": 0.0
     },
     "jgb10y": {
       "last": 2.719,
@@ -80,17 +104,17 @@
       "z": -1.03
     },
     "vix": {
-      "last": 18.77,
-      "chg_5d": 3.74,
-      "percentile_3y": 75.3
+      "last": 18.52,
+      "chg_5d": 1.36,
+      "percentile_3y": 73.3
     },
     "move": {
       "last": 70.88
     },
     "fx_vol": {
-      "realized_10d": 3.51,
-      "atr_pct_14": 0.41,
-      "vol_of_vol": 1.2,
+      "realized_10d": 3.52,
+      "atr_pct_14": 0.42,
+      "vol_of_vol": 1.21,
       "percentile_3y": 7.3
     },
     "nikkei": {
@@ -98,8 +122,8 @@
       "chg_5d_pct": -6.44
     },
     "mxnjpy": {
-      "last": 9.234,
-      "dd_from_20d_high_pct": -0.95
+      "last": 9.254,
+      "dd_from_20d_high_pct": -0.74
     },
     "cot_jpy": {
       "net_position": -122663,
@@ -110,16 +134,16 @@
       "available_from": "2026-07-17"
     },
     "dxy": {
-      "last": 100.742,
-      "chg_5d_pct": -0.53
+      "last": 100.662,
+      "chg_5d_pct": -0.61
     },
     "gold": {
-      "last": 4010.5,
-      "chg_5d_pct": 0.34
+      "last": 4021.9,
+      "chg_5d_pct": 0.62
     },
     "btc": {
-      "last": 63854.26,
-      "chg_5d_pct": -1.33
+      "last": 64126.64,
+      "chg_5d_pct": -0.91
     },
     "ndx": {
       "last": 28592.66,
@@ -140,16 +164,74 @@
     "jgb_is_proxy": false,
     "missing": [],
     "stale": [
+      "audjpy",
       "move",
       "ndx",
       "nikkei",
       "spx",
       "us10y",
       "us2y",
-      "vix"
+      "usdjpy"
     ],
     "tickers_ok": 13,
     "tickers_total": 13,
     "indicator_rows": 1491
+  },
+  "events": {
+    "risk_active": false,
+    "risk_window_days": 3,
+    "risk_events": [],
+    "upcoming": [
+      {
+        "type": "fomc",
+        "label": "FOMC Meeting",
+        "start_date": "2026-07-28",
+        "date": "2026-07-29",
+        "approx": false,
+        "source": "federalreserve",
+        "days_until": 8
+      },
+      {
+        "type": "boj_mpm",
+        "label": "BOJ Monetary Policy Meeting",
+        "start_date": "2026-07-30",
+        "date": "2026-07-31",
+        "approx": false,
+        "source": "boj",
+        "days_until": 10
+      },
+      {
+        "type": "jp_cpi",
+        "label": "Japan CPI (national)",
+        "start_date": "2026-08-21",
+        "date": "2026-08-21",
+        "approx": true,
+        "source": "rule:third_friday",
+        "days_until": 32
+      },
+      {
+        "type": "fomc",
+        "label": "FOMC Meeting",
+        "start_date": "2026-09-15",
+        "date": "2026-09-16",
+        "approx": false,
+        "source": "federalreserve",
+        "days_until": 57
+      },
+      {
+        "type": "boj_mpm",
+        "label": "BOJ Monetary Policy Meeting",
+        "start_date": "2026-09-17",
+        "date": "2026-09-18",
+        "approx": false,
+        "source": "boj",
+        "days_until": 59
+      }
+    ],
+    "sources": {
+      "boj": "cache",
+      "fomc": "cache",
+      "jp_cpi": "rule+overrides"
+    }
   }
 }

@@ -128,6 +128,7 @@ def run(mode: str, cfg: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         cfg,
         write_cot=(mode == "weekly"),
         write_cusi_history=(mode != "hourly"),
+        fetch_network_events=(mode != "hourly"),
     )
 
     elapsed = time.perf_counter() - started

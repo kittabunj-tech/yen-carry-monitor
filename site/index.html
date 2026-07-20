@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>¥</text></svg>">
 </head>
 <body>
@@ -45,6 +45,9 @@
 
   <!-- ธงเตือนคุณภาพข้อมูล (ซ่อนเมื่อทุกอย่างปกติ) -->
   <div class="quality-bar" id="quality-bar" hidden></div>
+
+  <!-- Phase 6C: ปฏิทิน BOJ MPM / FOMC / CPI ญี่ปุ่น + ธง event risk -->
+  <div class="events-bar" id="events-bar" hidden></div>
 </header>
 
 <main class="container">
@@ -277,7 +280,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <!-- ?v= = cache-bust: เพิ่มเลขนี้ทุกครั้งที่แก้ app.js/charts.js เพื่อให้ผู้ใช้เก่าได้ไฟล์ใหม่
      (GitHub Pages + browser cache ไฟล์ static ค่อนข้างแรง) -->
-<script src="charts.js?v=2"></script>
-<script src="app.js?v=2"></script>
+<script src="charts.js?v=3"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

@@ -208,6 +208,20 @@ cusi:
     recall_at_60_pct: 58.8
     report: "backtest/VALIDATION_REPORT.md"
 
+# ---------------------------------------------------------------- Events (Phase 6C)
+# BOJ MPM + FOMC scrape จากหน้าทางการ / CPI ญี่ปุ่นใช้กติกา (e-stat เป็น JS scrape ไม่ได้)
+events:
+  boj_url: "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm"
+  fomc_url: "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+  risk_window_days: 3               # ธง event risk ตั้งแต่ (วันเริ่มประชุม − 3) ถึงวันแถลงผล
+  risk_types: ["boj_mpm", "fomc"]   # ประเภทที่ยกธง (CPI แสดงใน countdown แต่ไม่ยกธง)
+  upcoming_count: 5                 # จำนวนเหตุการณ์ที่ใส่ใน latest.json
+  keep_past_days: 30
+  horizon_days: 400
+  # CPI ญี่ปุ่น: กติกา "ศุกร์ที่สาม" (ประมาณ — จริงอาจเลื่อนตามวันหยุด)
+  # pin วันจริงได้ที่นี่ แล้ววันจากกติกาของเดือนนั้นจะถูกแทนที่:
+  jp_cpi_overrides: []              # เช่น ["2026-08-21", "2026-09-18"]
+
 # ---------------------------------------------------------------- windows §2.4 / §3.2
 parameters:
   # ต้องดึง 4 ปี เพื่อให้ได้ CUSI ครบ 3 ปี:
@@ -246,6 +260,7 @@ paths:
   cusi_history_json: "data/cusi_history.json"
   indicators_history_json: "data/indicators_history.json"
   cot_history_json: "data/cot_history.json"
+  events_json: "data/events.json"
   jgb_parquet: "data/raw/jgb10y.parquet"
   cot_parquet: "data/raw/cot_jpy.parquet"
 
