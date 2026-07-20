@@ -19,6 +19,7 @@ from pipeline.cusi import build_cusi_block, build_cusi_frame, build_cusi_history
 from pipeline.fetch_cot import cot_series
 from pipeline.fetch_events import build_events_block, fetch_events
 from pipeline.fetch_implied_vol import fetch_implied_vol, read_history_series, update_history
+from pipeline.cusi_lite import compute_cusi_lite, load_cached_intraday
 from pipeline.fetch_jgb import jgb_series
 from pipeline.fetch_market import FetchResult, close_series
 
@@ -540,6 +541,14 @@ def build_all(
         log.exception("CUSI computation failed — latest.json will carry cusi=null")
 
     latest = build_latest_json(market, jgb_df, jgb_source, cot_df, df, cfg, cusi_block, events_block)
+
+    # ---- Phase 6D: CUSI-Lite จากแท่ง 1h (field ใหม่ — additive)
+    try:
+        intraday = market.intraday if market.intraday else load_cached_intraday(cfg)
+        latest["cusi_lite"] = compute_cusi_lite(intraday, cfg)
+    except Exception:
+        log.exception("CUSI-Lite ล้มเหลว — latest.json จะไม่มี field นี้รอบนี้")
+        latest["cusi_lite"] = None
 
     # ---- Phase 6B: field ใหม่ indicators.fx_implied (ห้ามแตะ fx_vol เดิม)
     if implied_metric:

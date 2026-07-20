@@ -335,6 +335,19 @@ code {
   margin-top: 3px;
 }
 
+/* Phase 6D: CUSI-Lite (1h) ใต้ตัวเลขหลัก */
+.gauge__lite {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding: 5px 12px;
+  display: inline-block;
+  border: 1px dashed var(--border);
+  border-radius: 999px;
+}
+.gauge__lite[hidden] { display: none; }
+.gauge__lite .lite-val { font-weight: 600; font-family: var(--font-mono); }
+
 /* ── component bars ── */
 
 .components { margin-top: 18px; border-top: 1px solid var(--border-soft); padding-top: 13px; }

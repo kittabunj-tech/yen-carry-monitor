@@ -453,6 +453,30 @@
     }
   }
 
+  /** Phase 6D: แสดง CUSI-Lite (1h) ใต้ gauge หลัก */
+  function renderLite() {
+    var el = $("cusi-lite");
+    if (!el) return;
+    var lite = state.latest && state.latest.cusi_lite;
+    if (!lite || !lite.available) {
+      // ไม่มีข้อมูล/ค้างทั้งหมด → ซ่อน (ไม่โชว์ตัวเลขเก่าให้เข้าใจผิด)
+      el.hidden = true;
+      return;
+    }
+    var color = lite.level_color || "var(--text-muted)";
+    var staleNote = (lite.stale && lite.stale.length)
+      ? " · <span class='na'>ตัด " + lite.stale.length + " ตัวที่ค้าง</span>" : "";
+    var t = lite.as_of ? new Date(lite.as_of) : null;
+    var tstr = t && !isNaN(t) ? String(t.getHours()).padStart(2, "0") + ":" +
+               String(t.getMinutes()).padStart(2, "0") : "";
+    el.innerHTML = "CUSI-Lite (1h): <span class='lite-val' style='color:" + color + "'>" +
+      lite.value.toFixed(1) + " " + esc(lite.level) + "</span>" +
+      (tstr ? " <span class='na'>· แท่ง " + tstr + "</span>" : "") + staleNote;
+    el.title = "mini-CUSI จากแท่ง 1 ชั่วโมง (JPY momentum / VIX / FX vol) — " +
+      "สเกลเดียวกับ CUSI หลัก · coverage " + Math.round((lite.weight_coverage || 0) * 100) + "%";
+    el.hidden = false;
+  }
+
   /* ========================== COMPONENT BARS ========================== */
 
   /** วาด contribution bars (แนวนอน เรียงจากมากไปน้อย) */
@@ -990,6 +1014,7 @@
     renderHeader();
     renderEvents();
     drawGaugeBands();
+    renderLite();
     renderGauge();
     renderComponents();
     renderTable();

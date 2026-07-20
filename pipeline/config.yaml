@@ -231,6 +231,25 @@ events:
   # pin วันจริงได้ที่นี่ แล้ววันจากกติกาของเดือนนั้นจะถูกแทนที่:
   jp_cpi_overrides: []              # เช่น ["2026-08-21", "2026-09-18"]
 
+# ---------------------------------------------------------------- CUSI-Lite (Phase 6D)
+# mini-CUSI จากแท่ง 1h — เฉพาะ 3 components ที่มี intraday จริงตาม spec
+# น้ำหนักมาจากสัดส่วนของ component เดียวกันใน CUSI เต็ม (20/15/10 → renormalize)
+# แต่ละ component คำนวณ z บนแท่งของตัวเอง (ไม่ align ข้ามซีรีส์ — VIX มี ~6.5
+# แท่ง/วัน ขณะที่ FX มี ~23 แท่ง/วัน การ join รายชั่วโมงจะสร้างรูมากกว่าข้อมูล)
+cusi_lite:
+  weights:
+    jpy_momentum_1h: 0.45          # จาก 0.20 ใน CUSI เต็ม
+    vix_1h:          0.33          # จาก 0.15
+    fx_vol_1h:       0.22          # จาก 0.10
+  momentum_bars: 24                # โมเมนตัม ~1 วันทำการของ FX
+  vol_bars: 24                     # realized vol บนแท่ง 1h
+  z_window_bars: 250               # ~2 สัปดาห์ FX / เกือบทั้งเดือนของ VIX
+  z_min_periods: 100               # VIX มีแท่งน้อยกว่า — ยอมให้ warm-up สั้นลง
+  clip: 3.0
+  bars_per_year_fx: 6000           # ~23 แท่ง × 260 วัน สำหรับ annualize vol
+  max_bar_age_hours: 72            # แท่งเก่ากว่านี้ = ค้าง (คลุมสุดสัปดาห์) → ตัด + renormalize
+  min_weight_coverage: 0.5         # เหลือน้ำหนัก < 50% → ไม่รายงานตัวเลข
+
 # ---------------------------------------------------------------- Implied Vol (Phase 6B)
 # แหล่ง: FXY (JPY ETF) options ผ่าน Yahoo — ตัวเดียวที่ฟรี+ไม่มี key (ดู docstring
 # fetch_implied_vol.py สำหรับผลประเมิน Databento / CME) IV คำนวณเองจาก lastPrice
@@ -249,7 +268,8 @@ parameters:
   # z-score กิน warm-up 252 วันทำการ (~1 ปี) แรกไปเป็น NaN
   # ถ้าดึงแค่ 3 ปีจะเหลือ CUSI จริงแค่ ~2 ปี
   history_years: 4                  # daily lookback
-  intraday_period: "5d"             # ช่วงที่ดึง 1h (yfinance จำกัด ~730d)
+  intraday_period: "1mo"            # 1h ย้อน 1 เดือน (~480 แท่ง FX) — CUSI-Lite ต้องใช้ทำ z
+                                    # (เดิม 5d — ขยายได้ปลอดภัย ไม่มีอะไร consume นอกจาก cache)
   intraday_interval: "1h"
   trading_days_per_year: 252
 
