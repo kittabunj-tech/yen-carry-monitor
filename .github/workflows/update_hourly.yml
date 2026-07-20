@@ -92,11 +92,12 @@ jobs:
 
           # workflow อื่นอาจ push แทรกระหว่างนี้ → rebase แล้วลองใหม่
           for i in 1 2 3; do
-            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && git push; then
+            if git pull --rebase --autostash -X theirs origin "${GITHUB_REF_NAME}" && git push; then
               echo "push สำเร็จ (ครั้งที่ $i)"
               exit 0
             fi
             echo "push ชนกัน — ลองใหม่ในอีก 5 วินาที"
+            git rebase --abort 2>/dev/null || true   # กัน rebase ค้างถ้าเจอ conflict แปลก
             sleep 5
           done
           echo "::error::push ไม่สำเร็จหลังลอง 3 ครั้ง"
