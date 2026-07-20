@@ -194,6 +194,15 @@ cusi:
 
   alert_jump_threshold: 10.0   # §4.6 CUSI กระโดด >10 จุดใน 1 วัน = alert
 
+  # Phase 6B: แหล่งของ component fx_realized_vol
+  #   realized = realized vol 10d จาก USDJPY (default — มี history เต็ม)
+  #   implied  = 1M ATM IV จาก FXY options (ต้องออม history ≥ implied_min_history
+  #              วันก่อน ไม่งั้นระบบ fallback เป็น realized เองพร้อม log)
+  # เหตุผลที่ default ยังเป็น realized: z window = 252 วัน แต่ history implied
+  # เพิ่งเริ่มเก็บวันนี้ — สลับก่อนเวลาคือ z-score จากตัวอย่างจิ๋ว = ตัวเลขมั่ว
+  fx_vol_source: "realized"
+  implied_min_history: 252
+
   # บันทึกผล validation (ไม่มีโค้ดอ่านค่านี้ — ไว้ให้คนอ่านและ audit ย้อนหลัง)
   validation:
     phase: 4
@@ -221,6 +230,18 @@ events:
   # CPI ญี่ปุ่น: กติกา "ศุกร์ที่สาม" (ประมาณ — จริงอาจเลื่อนตามวันหยุด)
   # pin วันจริงได้ที่นี่ แล้ววันจากกติกาของเดือนนั้นจะถูกแทนที่:
   jp_cpi_overrides: []              # เช่น ["2026-08-21", "2026-09-18"]
+
+# ---------------------------------------------------------------- Implied Vol (Phase 6B)
+# แหล่ง: FXY (JPY ETF) options ผ่าน Yahoo — ตัวเดียวที่ฟรี+ไม่มี key (ดู docstring
+# fetch_implied_vol.py สำหรับผลประเมิน Databento / CME) IV คำนวณเองจาก lastPrice
+# เพราะ field impliedVolatility ของ Yahoo เป็นค่า placeholder นอกเวลาตลาด
+implied_vol:
+  symbol: "FXY"
+  target_dte_days: 30               # เลือก expiry ใกล้ 1 เดือน
+  dte_range: [20, 45]
+  max_quote_age_days: 5             # trade เก่ากว่านี้ = stale (คลุมสุดสัปดาห์ยาว)
+  min_option_price: 0.05            # ต่ำกว่านี้ inversion ไม่น่าเชื่อ
+  iv_bounds: [0.005, 0.60]          # 0.5%–60% ต่อปี — นอกช่วงนี้คือขยะ
 
 # ---------------------------------------------------------------- windows §2.4 / §3.2
 parameters:
@@ -261,6 +282,7 @@ paths:
   indicators_history_json: "data/indicators_history.json"
   cot_history_json: "data/cot_history.json"
   events_json: "data/events.json"
+  implied_vol_history_json: "data/implied_vol_history.json"
   jgb_parquet: "data/raw/jgb10y.parquet"
   cot_parquet: "data/raw/cot_jpy.parquet"
 

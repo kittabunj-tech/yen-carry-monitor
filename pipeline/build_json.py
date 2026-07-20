@@ -18,6 +18,7 @@ from pipeline.config import get_logger, load_config, resolve_path
 from pipeline.cusi import build_cusi_block, build_cusi_frame, build_cusi_history, load_weights
 from pipeline.fetch_cot import cot_series
 from pipeline.fetch_events import build_events_block, fetch_events
+from pipeline.fetch_implied_vol import fetch_implied_vol, read_history_series, update_history
 from pipeline.fetch_jgb import jgb_series
 from pipeline.fetch_market import FetchResult, close_series
 
@@ -511,6 +512,23 @@ def build_all(
     except Exception:
         log.exception("event layer ล้มเหลว — latest.json จะไม่มี field events รอบนี้")
 
+    # ---- Implied vol (Phase 6B) — additive เช่นกัน
+    implied_metric: Optional[Dict[str, Any]] = None
+    try:
+        if fetch_network_events:                     # daily/weekly เท่านั้น (options ไม่ต้องถี่กว่านั้น)
+            implied_metric = fetch_implied_vol(cfg)
+            update_history(implied_metric, cfg)
+        # เติมคอลัมน์จาก history ให้ CUSI ใช้ได้เมื่อสลับ source (มีผลก็ต่อเมื่อ
+        # fx_vol_source=implied และ history ยาวพอ — ดู compute_components)
+        hist = read_history_series(cfg)
+        if hist and not df.empty:
+            import pandas as _pd
+            s = _pd.Series(hist)
+            s.index = _pd.to_datetime(s.index)
+            df["fx_implied_vol_1m"] = s.reindex(df.index)
+    except Exception:
+        log.exception("implied vol layer ล้มเหลว — ข้ามรอบนี้")
+
     # ---- CUSI (Phase 2) — ถ้าพังต้องไม่ทำให้ข้อมูลส่วนอื่นหายไปทั้งไฟล์
     cusi_block: Optional[Dict[str, Any]] = None
     cusi_df = pd.DataFrame()
@@ -522,6 +540,23 @@ def build_all(
         log.exception("CUSI computation failed — latest.json will carry cusi=null")
 
     latest = build_latest_json(market, jgb_df, jgb_source, cot_df, df, cfg, cusi_block, events_block)
+
+    # ---- Phase 6B: field ใหม่ indicators.fx_implied (ห้ามแตะ fx_vol เดิม)
+    if implied_metric:
+        latest["indicators"]["fx_implied"] = implied_metric
+    else:
+        hist_path = resolve_path(cfg, "implied_vol_history_json")
+        if hist_path.is_file():
+            try:
+                series = json.loads(hist_path.read_text(encoding="utf-8")).get("series", {})
+                if series:
+                    last_date = max(series)
+                    latest["indicators"]["fx_implied"] = {
+                        **series[last_date], "asof_date": last_date,
+                        "source": "history_cache", "quality": "cached",
+                    }
+            except (json.JSONDecodeError, OSError):
+                pass
 
     write_json(latest, resolve_path(cfg, "latest_json", mkdir=True))
     write_json(build_history_json(df, cfg), resolve_path(cfg, "indicators_history_json", mkdir=True))

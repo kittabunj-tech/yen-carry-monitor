@@ -82,6 +82,8 @@
       bps: "chg_20d_bps", bpsLabel: "20d", extra: zExtra("z") },
     { key: "fx_vol", label: "FX Realized Vol", sub: "USDJPY 10d · %", dec: 2, valueKey: "realized_10d",
       d1: null, d5: null, extra: fxVolExtra() },
+    { key: "fx_implied", label: "FX Implied Vol", sub: "FXY options 1M ATM · %", dec: 2,
+      valueKey: "iv_atm_1m_pct", d1: null, d5: null, extra: impliedExtra() },
     { key: "cot_jpy", label: "COT JPY Net", sub: "CFTC · contracts", dec: 0, valueKey: "net_position",
       d1: null, d5: null, extra: cotExtra() },
     { key: "dxy",  label: "DXY",     sub: "DX-Y.NYB", dec: 3, d1: null, d5: "chg_5d_pct", extra: null },
@@ -538,6 +540,22 @@
       return bits.join(" · ");
     };
   }
+  function impliedExtra() {
+    return function (d) {
+      var bits = [];
+      if (isNum(d.rr_25d_pct)) {
+        // RR ติดลบ = ตลาดจ่ายแพง hedge เยนแข็ง = สัญญาณเสี่ยง → สีร้อน
+        bits.push("<span class='pill'>RR25Δ <span class='" + riskClass(-d.rr_25d_pct) + "'>" +
+                  fmtSigned(d.rr_25d_pct, 2) + "</span></span>");
+      }
+      if (d.quality && d.quality !== "ok") {
+        bits.push("<span class='pill pill--warn'>" + esc(d.quality) + "</span>");
+      }
+      if (d.expiry) bits.push("<span class='na'>exp " + esc(d.expiry) + "</span>");
+      return bits.join(" ");
+    };
+  }
+
   function cotExtra() {
     return function (d) {
       var bits = [];

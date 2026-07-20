@@ -238,8 +238,23 @@ def compute_components(
     index = df_indicators.index
     out: Dict[str, pd.Series] = {}
 
+    # ---- Phase 6B: เลือกแหล่งของ component fx_realized_vol
+    # implied (FXY 1M ATM IV) ใช้ได้ต่อเมื่อออม history พอสำหรับ z window แล้ว
+    # ไม่งั้น fallback เป็น realized เงียบ ๆ ไม่ได้ — ต้อง log ให้รู้
+    specs = dict(COMPONENT_SPECS)
+    if cfg["cusi"].get("fx_vol_source", "realized") == "implied":
+        col = "fx_implied_vol_1m"
+        need = int(cfg["cusi"].get("implied_min_history", 252))
+        have = int(df_indicators[col].notna().sum()) if col in df_indicators.columns else 0
+        if have >= need:
+            specs["fx_realized_vol"] = (col, +1)
+            log.info("fx vol source = implied (history %d วัน ≥ %d)", have, need)
+        else:
+            log.warning("fx_vol_source=implied แต่ history มีแค่ %d/%d วัน — ใช้ realized ต่อ",
+                        have, need)
+
     # ---- components ที่มาจากคอลัมน์เดียวตรง ๆ
-    for name, (column, sign) in COMPONENT_SPECS.items():
+    for name, (column, sign) in specs.items():
         if column not in df_indicators.columns:
             log.warning("indicator column %r missing — component %r = NaN", column, name)
             out[name] = pd.Series(np.nan, index=index)

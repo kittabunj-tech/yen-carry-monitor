@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T14:49:49+07:00",
+  "generated_at": "2026-07-20T15:03:41+07:00",
   "data_as_of": "2026-07-20T00:00:00",
   "schema_version": "1.0",
   "cusi": {
@@ -134,16 +134,16 @@
       "available_from": "2026-07-17"
     },
     "dxy": {
-      "last": 100.662,
-      "chg_5d_pct": -0.61
+      "last": 100.681,
+      "chg_5d_pct": -0.59
     },
     "gold": {
-      "last": 4021.9,
-      "chg_5d_pct": 0.62
+      "last": 4022.3,
+      "chg_5d_pct": 0.63
     },
     "btc": {
-      "last": 64126.64,
-      "chg_5d_pct": -0.91
+      "last": 64232.91,
+      "chg_5d_pct": -0.74
     },
     "ndx": {
       "last": 28592.66,
@@ -156,6 +156,19 @@
     "us2y": {
       "last": 3.997,
       "chg_5d_bps": 3.9
+    },
+    "fx_implied": {
+      "n_calls_used": 9,
+      "n_puts_used": 3,
+      "iv_atm_1m_pct": 7.36,
+      "rr_25d_pct": -1.29,
+      "rr_convention": "usdjpy (ติดลบ = hedge เยนแข็งแพง)",
+      "quality": "ok",
+      "source": "FXY_options_yahoo",
+      "expiry": "2026-08-21",
+      "dte_days": 32,
+      "spot": 56.51,
+      "asof": "2026-07-20T08:03:41+00:00"
     }
   },
   "alerts": [],
@@ -229,8 +242,8 @@
       }
     ],
     "sources": {
-      "boj": "cache",
-      "fomc": "cache",
+      "boj": "scrape",
+      "fomc": "scrape",
       "jp_cpi": "rule+overrides"
     }
   }
