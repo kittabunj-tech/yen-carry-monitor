@@ -26,16 +26,31 @@
     { date: "2022-12-20", label: "BOJ YCC tweak" }
   ];
 
-  /** TradingView mini-chart widgets (spec Phase 3 ข้อ 5) */
+  /** TradingView mini-chart widgets (spec Phase 3 ข้อ 5)
+   *
+   * NOTE เรื่อง symbol (ตรวจสอบในเบราว์เซอร์จริงแล้ว):
+   *   TradingView บล็อก index/yield/vol ของ exchange ในwidget ฟรี
+   *   (ขึ้น "This symbol is only available on TradingView" เพราะข้อมูล
+   *    real-time มีลิขสิทธิ์) จึงต้องใช้ feed ของโบรกเกอร์ CFD แทน:
+   *     VIX  → CAPITALCOM:VIX      (CBOE:VIX / TVC:VIX ใช้ไม่ได้)
+   *     SPX  → CAPITALCOM:US500    (SP:SPX ใช้ไม่ได้)
+   *     NDX  → CAPITALCOM:US100    (NASDAQ:IXIC ใช้ไม่ได้)
+   *     N225 → CAPITALCOM:J225     (TVC:NI225 ใช้ไม่ได้)
+   *
+   *   JGB 10Y yield: **ไม่มี symbol ใน widget ฟรีเลย** (bond yield ทุกตัว
+   *   รวม US10Y/DXY embed ไม่ได้) — ต่างจาก spec §2.3 ที่เสนอ TVC:JP10Y
+   *   ค่า JGB จริงจาก MOF ยังแสดงในตาราง indicators ด้านล่าง จึงสลับช่องนี้
+   *   เป็น Gold (safe-haven confirmation ตาม spec §2.2 #15) ที่ทำงานได้
+   */
   var TV_SYMBOLS = [
-    { symbol: "FX:USDJPY",     label: "USD/JPY" },
-    { symbol: "FX:AUDJPY",     label: "AUD/JPY" },
-    { symbol: "TVC:JP10Y",     label: "JGB 10Y" },
-    { symbol: "CBOE:VIX",      label: "VIX" },
-    { symbol: "NASDAQ:IXIC",   label: "Nasdaq" },
-    { symbol: "SP:SPX",        label: "S&P 500" },
-    { symbol: "TVC:NI225",     label: "Nikkei 225" },
-    { symbol: "FX_IDC:MXNJPY", label: "MXN/JPY" }
+    { symbol: "FX:USDJPY",      label: "USD/JPY" },
+    { symbol: "FX:AUDJPY",      label: "AUD/JPY" },
+    { symbol: "CAPITALCOM:J225", label: "Nikkei 225" },
+    { symbol: "CAPITALCOM:VIX", label: "VIX" },
+    { symbol: "CAPITALCOM:US100", label: "Nasdaq 100" },
+    { symbol: "CAPITALCOM:US500", label: "S&P 500" },
+    { symbol: "TVC:GOLD",       label: "Gold" },
+    { symbol: "FX_IDC:MXNJPY",  label: "MXN/JPY" }
   ];
 
   /** ระดับสำรอง เผื่อ cusi_history.json โหลดไม่ได้ (ปกติอ่านจากไฟล์) */
