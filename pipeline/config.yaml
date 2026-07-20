@@ -231,6 +231,46 @@ events:
   # pin วันจริงได้ที่นี่ แล้ววันจากกติกาของเดือนนั้นจะถูกแทนที่:
   jp_cpi_overrides: []              # เช่น ["2026-08-21", "2026-09-18"]
 
+# ---------------------------------------------------------------- Episodes (Phase 6E)
+# Historical Episode Explorer — รายการเหตุการณ์ + หน้าต่าง replay
+# ข้อมูลอดีตไม่เปลี่ยน: generate ครั้งเดียวด้วย `python backtest/build_episodes.py`
+# → data/episodes.json (commit) — ไม่มี workflow ไหนต้องรันซ้ำ
+# anchor = วันอ้างอิง (day 0) · during_days = ช่วง "ระหว่างเหตุการณ์" หลัง day 0
+episodes:
+  window_pre_days: 60               # วันทำการก่อน anchor
+  window_post_days: 40              # วันทำการหลัง anchor
+  list:
+    - id: covid2020
+      anchor: "2020-03-16"
+      during_days: 8
+      title: "COVID crash — มี.ค. 2020"
+      desc: "Risk-off ระดับโลกเร็วที่สุดในประวัติศาสตร์ carry ถูก unwind พร้อมทุกสินทรัพย์ CUSI แตะจุดสูงสุดของทั้งชุดข้อมูล (95.7)"
+    - id: ycc2022
+      anchor: "2022-12-20"
+      during_days: 5
+      title: "BOJ ขยายกรอบ YCC — ธ.ค. 2022"
+      desc: "BOJ ขยายกรอบ yield 10Y เป็น ±0.5% เหนือความคาดหมาย เยนแข็งทันที ~4% — ตัวอย่างของ shock จากฝั่งนโยบายญี่ปุ่นโดยตรง"
+    - id: apr2024
+      anchor: "2024-04-29"
+      during_days: 5
+      title: "USDJPY ทะลุ 160 + การแทรกแซง — เม.ย. 2024"
+      desc: "เยนอ่อนสุดในรอบ 34 ปีจน MOF แทรกแซง — เหตุการณ์ฝั่ง 'เยนอ่อน' ที่ CUSI ไม่ควรตื่น (ทดสอบว่า index แยกทิศทางถูก)"
+    - id: aug2024
+      anchor: "2024-08-05"
+      during_days: 4
+      title: "Yen carry unwind — ส.ค. 2024"
+      desc: "เหตุการณ์อ้างอิงหลักของโปรเจกต์: BOJ ขึ้นดอกเบี้ย + ข้อมูลจ้างงานสหรัฐอ่อน → Nikkei -12.4% ในวันเดียว USDJPY 162→141 CUSI นำหน้าด้วยการข้าม 60 ตั้งแต่ 12 ก.ค."
+    - id: feb2025
+      anchor: "2025-02-06"
+      during_days: 6
+      title: "Risk-off — ก.พ. 2025"
+      desc: "ช่วงร่วงแรงของหุ้นสหรัฐ (SPX -13.7% จากจุดสูง) พร้อมเยนแข็ง 6.6% — episode ที่ CUSI พลาด (ไม่ข้าม 60 ก่อนเหตุการณ์) ดูไว้เป็นบทเรียนของข้อจำกัด"
+    - id: jan2026
+      anchor: "2026-01-27"
+      during_days: 5
+      title: "Risk-off — ม.ค. 2026"
+      desc: "SPX ร่วง 7.7% พร้อมเยนแข็ง 4.2% — เหตุการณ์ล่าสุดในชุดข้อมูล"
+
 # ---------------------------------------------------------------- CUSI-Lite (Phase 6D)
 # mini-CUSI จากแท่ง 1h — เฉพาะ 3 components ที่มี intraday จริงตาม spec
 # น้ำหนักมาจากสัดส่วนของ component เดียวกันใน CUSI เต็ม (20/15/10 → renormalize)
@@ -303,6 +343,7 @@ paths:
   cot_history_json: "data/cot_history.json"
   events_json: "data/events.json"
   implied_vol_history_json: "data/implied_vol_history.json"
+  episodes_json: "data/episodes.json"
   jgb_parquet: "data/raw/jgb10y.parquet"
   cot_parquet: "data/raw/cot_jpy.parquet"
 

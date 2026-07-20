@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode Explorer — Yen Carry Monitor</title>
+<meta name="description" content="Replay เหตุการณ์ unwind ในอดีต — ตัวชี้วัดแต่ละตัวขยับอย่างไรก่อน/ระหว่าง/หลัง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="episodes.css?v=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>¥</text></svg>">
+</head>
+<body>
+
+<header class="header">
+  <div class="header__main">
+    <div class="header__brand">
+      <span class="header__mark">¥</span>
+      <div>
+        <h1 class="header__title">Episode Explorer</h1>
+        <p class="header__sub">replay เหตุการณ์ unwind ในอดีต — ก่อน / ระหว่าง / หลัง</p>
+      </div>
+    </div>
+    <div class="header__meta">
+      <a class="refresh-btn" href="index.html">← กลับ dashboard</a>
+    </div>
+  </div>
+  <p class="disclaimer">
+    ⚠️ ข้อมูลเพื่อการศึกษาเท่านั้น ไม่ใช่คำแนะนำการลงทุน — day 0 = วันอ้างอิงของเหตุการณ์
+  </p>
+</header>
+
+<main class="container">
+
+  <!-- ตัวเลือกเหตุการณ์ -->
+  <div class="ep-selector" id="ep-selector"><span class="na">กำลังโหลด…</span></div>
+
+  <!-- คำอธิบาย + สถิติ -->
+  <section class="row">
+    <article class="card">
+      <h2 class="card__title" id="ep-title">—</h2>
+      <p class="ep-desc" id="ep-desc"></p>
+      <div class="ep-stats" id="ep-stats"></div>
+    </article>
+  </section>
+
+  <!-- กราฟหลัก CUSI + scrubber -->
+  <section class="row">
+    <article class="card">
+      <header class="card__head">
+        <h3 class="card__title card__title--sm">CUSI รอบเหตุการณ์</h3>
+        <span class="card__hint">แรเงา: ก่อน / <b style="color:var(--unwind)">ระหว่าง</b> / หลัง · เส้นตั้ง = ตำแหน่ง replay</span>
+      </header>
+      <div class="chart-wrap chart-wrap--ep"><canvas id="ep-cusi"></canvas></div>
+
+      <div class="ep-scrub">
+        <input type="range" id="ep-slider" min="-60" max="40" value="0" step="1"
+               aria-label="เลื่อนดูค่าตัวชี้วัด ณ วันต่าง ๆ">
+        <div class="ep-scrub__readout">
+          <span id="ep-cursor-day" class="num">day 0</span>
+          <span id="ep-cursor-date" class="na num"></span>
+          <span id="ep-cursor-values" class="num"></span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ตัวชี้วัดรายตัว -->
+  <section class="row">
+    <header class="section-head">
+      <h2 class="section-head__title">ตัวชี้วัดรายตัว</h2>
+      <p class="section-head__sub">ราคา (USDJPY / AUDJPY / Nikkei) ถูก normalize = 100 ณ day 0 เพื่อเทียบข้ามเหตุการณ์ได้ · ตัวอื่นเป็นค่าดิบ</p>
+    </header>
+    <div class="grid grid--panels" id="ep-grid"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Yen Carry Monitor — Episode Explorer · สร้างจากข้อมูลจริงย้อนหลัง (backtest/build_episodes.py)</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="episodes.js?v=1"></script>
+</body>
+</html>
