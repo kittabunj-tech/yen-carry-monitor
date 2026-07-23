@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-23T17:32:45+07:00",
+  "generated_at": "2026-07-23T19:45:51+07:00",
   "data_as_of": "2026-07-23T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 51.7,
-    "level": "WATCH",
-    "level_color": "#d29922",
-    "level_emoji": "🟡",
-    "change_1d": 12.0,
+    "value": 40.0,
+    "level": "CALM",
+    "level_color": "#3fb950",
+    "level_emoji": "🟢",
+    "change_1d": 0.3,
     "as_of": "2026-07-23",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,45 +25,63 @@
         "z": 1.392,
         "weight": 0.1,
         "contribution": 0.1392,
-        "share_pct": 34.8
+        "share_pct": 12.6
       },
       "nikkei_momentum": {
         "z": 1.328,
         "weight": 0.05,
         "contribution": 0.0664,
-        "share_pct": 16.6
+        "share_pct": 6.0
       },
       "vix": {
-        "z": 0.132,
+        "z": 0.407,
         "weight": 0.15,
-        "contribution": 0.0198,
-        "share_pct": 5.0
+        "contribution": 0.0611,
+        "share_pct": 5.5
       },
       "mxnjpy_drawdown": {
-        "z": -0.497,
+        "z": -0.397,
         "weight": 0.05,
-        "contribution": -0.0248,
-        "share_pct": 6.2
+        "contribution": -0.0198,
+        "share_pct": 1.8
+      },
+      "fx_realized_vol": {
+        "z": -1.028,
+        "weight": 0.1,
+        "contribution": -0.1028,
+        "share_pct": 9.3
       },
       "audjpy_drawdown": {
-        "z": -0.995,
+        "z": -0.96,
         "weight": 0.15,
-        "contribution": -0.1493,
-        "share_pct": 37.4
+        "contribution": -0.144,
+        "share_pct": 13.0
+      },
+      "jpy_momentum": {
+        "z": -0.818,
+        "weight": 0.2,
+        "contribution": -0.1637,
+        "share_pct": 14.8
+      },
+      "spread_compression": {
+        "z": -2.718,
+        "weight": 0.15,
+        "contribution": -0.4077,
+        "share_pct": 36.9
       }
     }
   },
   "indicators": {
     "usdjpy": {
-      "last": 163.186,
-      "chg_1d_pct": 0.43,
-      "chg_5d_pct": 0.62,
-      "z_5d": 0.42
+      "last": 163.705,
+      "chg_1d_pct": 0.32,
+      "chg_5d_pct": 1.01,
+      "z_5d": 0.82
     },
     "audjpy": {
-      "last": 114.314,
-      "chg_1d_pct": 0.07,
-      "dd_from_20d_high_pct": 0.0
+      "last": 114.197,
+      "chg_1d_pct": -0.03,
+      "dd_from_20d_high_pct": -0.03
     },
     "jgb10y": {
       "last": 2.745,
@@ -71,35 +89,35 @@
       "source": "MOF"
     },
     "us10y": {
-      "last": 4.657,
-      "chg_5d_bps": 11.2
+      "last": 4.71,
+      "chg_5d_bps": 14.1
     },
     "spread_us_jp": {
-      "last": 1.912,
-      "chg_20d_bps": 18.4,
-      "z": -0.71
+      "last": 1.965,
+      "chg_20d_bps": 21.0,
+      "z": -0.52
     },
     "vix": {
-      "last": 17.76,
-      "chg_5d": 1.03,
-      "percentile_3y": 66.4
+      "last": 18.58,
+      "chg_5d": 1.85,
+      "percentile_3y": 73.5
     },
     "move": {
       "last": 70.88
     },
     "fx_vol": {
-      "realized_10d": 3.58,
+      "realized_10d": 3.82,
       "atr_pct_14": 0.41,
-      "vol_of_vol": 1.17,
-      "percentile_3y": 7.7
+      "vol_of_vol": 1.14,
+      "percentile_3y": 9.1
     },
     "nikkei": {
       "last": 66422.6,
       "chg_5d_pct": -3.39
     },
     "mxnjpy": {
-      "last": 9.337,
-      "dd_from_20d_high_pct": -0.39
+      "last": 9.33,
+      "dd_from_20d_high_pct": -0.46
     },
     "cot_jpy": {
       "net_position": -122663,
@@ -110,16 +128,16 @@
       "available_from": "2026-07-17"
     },
     "dxy": {
-      "last": 101.178,
-      "chg_5d_pct": 0.44
+      "last": 101.356,
+      "chg_5d_pct": 0.62
     },
     "gold": {
-      "last": 4090.9,
-      "chg_5d_pct": 2.64
+      "last": 4075.6,
+      "chg_5d_pct": 2.26
     },
     "btc": {
-      "last": 65728.8,
-      "chg_5d_pct": 1.44
+      "last": 65057.31,
+      "chg_5d_pct": 0.4
     },
     "ndx": {
       "last": 28998.1,
@@ -142,7 +160,48 @@
       "quality": "cached"
     }
   },
-  "alerts": [],
+  "alerts": [
+    {
+      "ts": "2026-07-22T16:38:44+00:00",
+      "type": "level_change",
+      "from": "WATCH",
+      "to": "CALM",
+      "value": 38.2,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก WATCH เป็น CALM (CUSI 38.2)"
+    },
+    {
+      "ts": "2026-07-22T20:17:48+00:00",
+      "type": "level_change",
+      "from": "CALM",
+      "to": "WATCH",
+      "value": 41.1,
+      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก CALM เป็น WATCH (CUSI 41.1)"
+    },
+    {
+      "ts": "2026-07-22T22:12:45+00:00",
+      "type": "level_change",
+      "from": "WATCH",
+      "to": "CALM",
+      "value": 38.8,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก WATCH เป็น CALM (CUSI 38.8)"
+    },
+    {
+      "ts": "2026-07-23T00:09:42+00:00",
+      "type": "level_change",
+      "from": "CALM",
+      "to": "WATCH",
+      "value": 44.3,
+      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก CALM เป็น WATCH (CUSI 44.3)"
+    },
+    {
+      "ts": "2026-07-23T12:45:51+00:00",
+      "type": "level_change",
+      "from": "WATCH",
+      "to": "CALM",
+      "value": 40.0,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก WATCH เป็น CALM (CUSI 40.0)"
+    }
+  ],
   "data_quality": {
     "jgb_source": "MOF",
     "jgb_is_proxy": false,
@@ -214,21 +273,21 @@
   "cusi_lite": {
     "components": {
       "jpy_momentum_1h": {
-        "z": -0.73,
-        "bar_time": "2026-07-23T11:00:00+01:00",
-        "age_hours": 0.5,
+        "z": -1.473,
+        "bar_time": "2026-07-23T13:00:00+01:00",
+        "age_hours": 0.8,
         "bars": 522
       },
       "vix_1h": {
-        "z": 0.772,
-        "bar_time": "2026-07-23T11:00:00+01:00",
-        "age_hours": 0.5,
+        "z": 1.667,
+        "bar_time": "2026-07-23T13:00:00+01:00",
+        "age_hours": 0.8,
         "bars": 304
       },
       "fx_vol_1h": {
-        "z": -0.74,
-        "bar_time": "2026-07-23T11:00:00+01:00",
-        "age_hours": 0.5,
+        "z": -0.233,
+        "bar_time": "2026-07-23T13:00:00+01:00",
+        "age_hours": 0.8,
         "bars": 522
       }
     },
@@ -238,14 +297,14 @@
       "vix_1h": 0.33,
       "fx_vol_1h": 0.22
     },
-    "as_of": "2026-07-23T11:00:00+01:00",
-    "computed_at": "2026-07-23T10:32:45+00:00",
+    "as_of": "2026-07-23T13:00:00+01:00",
+    "computed_at": "2026-07-23T12:45:51+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
-    "value": 46.1,
+    "value": 47.3,
     "level": "WATCH",
     "level_color": "#d29922",
-    "weighted_z": -0.237,
+    "weighted_z": -0.164,
     "weight_coverage": 1.0
   }
 }
