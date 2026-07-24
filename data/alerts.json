@@ -71,6 +71,14 @@
       "to": "CALM",
       "value": 39.0,
       "reason": "ระดับ CUSI เปลี่ยนลงจาก WATCH เป็น CALM (CUSI 39.0)"
+    },
+    {
+      "ts": "2026-07-24T19:42:05+00:00",
+      "type": "level_change",
+      "from": "CALM",
+      "to": "WATCH",
+      "value": 40.8,
+      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก CALM เป็น WATCH (CUSI 40.8)"
     }
   ]
 }
