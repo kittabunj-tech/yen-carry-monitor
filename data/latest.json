@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T04:14:26+07:00",
+  "generated_at": "2026-07-25T06:11:03+07:00",
   "data_as_of": "2026-07-24T00:00:00",
   "schema_version": "1.0",
   "cusi": {
@@ -136,8 +136,8 @@
       "chg_5d_pct": 1.07
     },
     "btc": {
-      "last": 64088.28,
-      "chg_5d_pct": -0.93
+      "last": 64099.95,
+      "chg_5d_pct": -0.91
     },
     "ndx": {
       "last": 28128.34,
@@ -232,20 +232,20 @@
       "jpy_momentum_1h": {
         "z": 0.602,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 1.2,
-        "bars": 521
+        "age_hours": 3.2,
+        "bars": 519
       },
       "vix_1h": {
         "z": 1.161,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 1.2,
+        "age_hours": 3.2,
         "bars": 303
       },
       "fx_vol_1h": {
         "z": -0.894,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 1.2,
-        "bars": 521
+        "age_hours": 3.2,
+        "bars": 519
       }
     },
     "stale": [],
@@ -255,7 +255,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-07-24T21:00:00+01:00",
-    "computed_at": "2026-07-24T21:14:26+00:00",
+    "computed_at": "2026-07-24T23:11:03+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 57.6,
