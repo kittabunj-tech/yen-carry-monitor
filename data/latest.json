@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-25T06:11:03+07:00",
-  "data_as_of": "2026-07-24T00:00:00",
+  "generated_at": "2026-07-25T08:01:56+07:00",
+  "data_as_of": "2026-07-25T00:00:00",
   "schema_version": "1.0",
   "cusi": {
     "value": 40.2,
@@ -136,8 +136,8 @@
       "chg_5d_pct": 1.07
     },
     "btc": {
-      "last": 64099.95,
-      "chg_5d_pct": -0.91
+      "last": 64067.95,
+      "chg_5d_pct": -0.96
     },
     "ndx": {
       "last": 28128.34,
@@ -152,12 +152,17 @@
       "chg_5d_bps": 4.8
     },
     "fx_implied": {
-      "iv_atm_1m_pct": 8.08,
-      "rr_25d_pct": -3.22,
+      "n_calls_used": 9,
+      "n_puts_used": 3,
+      "iv_atm_1m_pct": 7.78,
+      "rr_25d_pct": null,
+      "rr_convention": "usdjpy (ติดลบ = hedge เยนแข็งแพง)",
+      "quality": "ok",
+      "source": "FXY_options_yahoo",
       "expiry": "2026-08-21",
-      "asof_date": "2026-07-24",
-      "source": "history_cache",
-      "quality": "cached"
+      "dte_days": 27,
+      "spot": 56.04,
+      "asof": "2026-07-25T01:01:56+00:00"
     }
   },
   "alerts": [],
@@ -171,9 +176,19 @@
     "indicator_rows": 1491
   },
   "events": {
-    "risk_active": false,
+    "risk_active": true,
     "risk_window_days": 3,
-    "risk_events": [],
+    "risk_events": [
+      {
+        "type": "fomc",
+        "label": "FOMC Meeting",
+        "start_date": "2026-07-28",
+        "date": "2026-07-29",
+        "approx": false,
+        "source": "federalreserve",
+        "days_until": 3
+      }
+    ],
     "upcoming": [
       {
         "type": "fomc",
@@ -182,7 +197,7 @@
         "date": "2026-07-29",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 4
+        "days_until": 3
       },
       {
         "type": "boj_mpm",
@@ -191,7 +206,7 @@
         "date": "2026-07-31",
         "approx": false,
         "source": "boj",
-        "days_until": 6
+        "days_until": 5
       },
       {
         "type": "jp_cpi",
@@ -200,7 +215,7 @@
         "date": "2026-08-21",
         "approx": true,
         "source": "rule:third_friday",
-        "days_until": 28
+        "days_until": 27
       },
       {
         "type": "fomc",
@@ -209,7 +224,7 @@
         "date": "2026-09-16",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 53
+        "days_until": 52
       },
       {
         "type": "boj_mpm",
@@ -218,12 +233,12 @@
         "date": "2026-09-18",
         "approx": false,
         "source": "boj",
-        "days_until": 55
+        "days_until": 54
       }
     ],
     "sources": {
-      "boj": "cache",
-      "fomc": "cache",
+      "boj": "scrape",
+      "fomc": "scrape",
       "jp_cpi": "rule+overrides"
     }
   },
@@ -232,19 +247,19 @@
       "jpy_momentum_1h": {
         "z": 0.602,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 3.2,
+        "age_hours": 5.0,
         "bars": 519
       },
       "vix_1h": {
         "z": 1.161,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 3.2,
+        "age_hours": 5.0,
         "bars": 303
       },
       "fx_vol_1h": {
         "z": -0.894,
         "bar_time": "2026-07-24T21:00:00+01:00",
-        "age_hours": 3.2,
+        "age_hours": 5.0,
         "bars": 519
       }
     },
@@ -255,7 +270,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-07-24T21:00:00+01:00",
-    "computed_at": "2026-07-24T23:11:03+00:00",
+    "computed_at": "2026-07-25T01:01:56+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 57.6,
