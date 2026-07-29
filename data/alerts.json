@@ -79,6 +79,14 @@
       "to": "WATCH",
       "value": 40.8,
       "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก CALM เป็น WATCH (CUSI 40.8)"
+    },
+    {
+      "ts": "2026-07-29T09:45:05+00:00",
+      "type": "jump",
+      "from": "WATCH",
+      "to": "WATCH",
+      "value": 53.8,
+      "reason": "CUSI เปลี่ยน +10.1 จุดใน 1 วัน (เกินเกณฑ์ 10)"
     }
   ]
 }
