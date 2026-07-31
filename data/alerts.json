@@ -167,6 +167,22 @@
       "to": "WATCH",
       "value": 46.0,
       "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 46.0)"
+    },
+    {
+      "ts": "2026-07-31T19:46:17+00:00",
+      "type": "level_change",
+      "from": "WATCH",
+      "to": "STRESS",
+      "value": 64.7,
+      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 64.7)"
+    },
+    {
+      "ts": "2026-07-31T19:46:17+00:00",
+      "type": "jump",
+      "from": "WATCH",
+      "to": "STRESS",
+      "value": 64.7,
+      "reason": "CUSI เปลี่ยน +18.8 จุดใน 1 วัน (เกินเกณฑ์ 10)"
     }
   ]
 }
