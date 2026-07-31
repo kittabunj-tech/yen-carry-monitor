@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-31T20:03:08+07:00",
+  "generated_at": "2026-07-31T22:26:41+07:00",
   "data_as_of": "2026-07-31T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 59.2,
-    "level": "WATCH",
-    "level_color": "#d29922",
-    "level_emoji": "🟡",
-    "change_1d": 13.2,
+    "value": 64.7,
+    "level": "STRESS",
+    "level_color": "#db6d28",
+    "level_emoji": "🟠",
+    "change_1d": 18.7,
     "as_of": "2026-07-31",
     "weights": {
       "jpy_momentum": 0.2,
@@ -22,55 +22,49 @@
     },
     "components": {
       "jpy_momentum": {
-        "z": 2.362,
+        "z": 2.993,
         "weight": 0.2,
-        "contribution": 0.4724,
-        "share_pct": 37.7
+        "contribution": 0.5986,
+        "share_pct": 39.5
+      },
+      "fx_realized_vol": {
+        "z": 2.02,
+        "weight": 0.1,
+        "contribution": 0.202,
+        "share_pct": 13.3
       },
       "cot_positioning": {
         "z": 1.698,
         "weight": 0.1,
         "contribution": 0.1698,
-        "share_pct": 13.5
-      },
-      "fx_realized_vol": {
-        "z": 1.035,
-        "weight": 0.1,
-        "contribution": 0.1035,
-        "share_pct": 8.3
+        "share_pct": 11.2
       },
       "mxnjpy_drawdown": {
-        "z": 1.639,
+        "z": 2.359,
         "weight": 0.05,
-        "contribution": 0.082,
-        "share_pct": 6.5
-      },
-      "nikkei_momentum": {
-        "z": 0.395,
-        "weight": 0.05,
-        "contribution": 0.0197,
-        "share_pct": 1.6
+        "contribution": 0.118,
+        "share_pct": 7.8
       },
       "vix": {
-        "z": -0.397,
+        "z": -0.256,
         "weight": 0.15,
-        "contribution": -0.0596,
-        "share_pct": 4.7
+        "contribution": -0.0385,
+        "share_pct": 2.5
       },
       "spread_compression": {
-        "z": -2.317,
+        "z": -2.604,
         "weight": 0.15,
-        "contribution": -0.3475,
-        "share_pct": 27.7
+        "contribution": -0.3906,
+        "share_pct": 25.7
       }
     }
   },
   "indicators": {
     "usdjpy": {
-      "last": 160.322,
-      "chg_1d_pct": -1.82,
-      "chg_5d_pct": -2.14,
-      "z_5d": -2.36
+      "last": 159.255,
+      "chg_1d_pct": -2.48,
+      "chg_5d_pct": -2.79,
+      "z_5d": -2.99
     },
     "audjpy": {
       "last": 113.631,
@@ -83,35 +77,35 @@
       "source": "MOF"
     },
     "us10y": {
-      "last": 4.7,
-      "chg_5d_bps": 2.1
+      "last": 4.733,
+      "chg_5d_bps": 5.4
     },
     "spread_us_jp": {
-      "last": 1.899,
-      "chg_20d_bps": 18.2,
-      "z": -0.72
+      "last": 1.932,
+      "chg_20d_bps": 21.5,
+      "z": -0.6
     },
     "vix": {
-      "last": 17.25,
-      "chg_5d": -1.33,
-      "percentile_3y": 60.6
+      "last": 17.67,
+      "chg_5d": -0.91,
+      "percentile_3y": 64.9
     },
     "move": {
       "last": 70.88
     },
     "fx_vol": {
-      "realized_10d": 10.29,
+      "realized_10d": 13.46,
       "atr_pct_14": 0.81,
-      "vol_of_vol": 1.55,
-      "percentile_3y": 71.2
+      "vol_of_vol": 2.2,
+      "percentile_3y": 88.0
     },
     "nikkei": {
-      "last": 64362.02,
-      "chg_5d_pct": -0.39
+      "last": 61867.43,
+      "chg_5d_pct": -6.86
     },
     "mxnjpy": {
-      "last": 9.213,
-      "dd_from_20d_high_pct": -1.94
+      "last": 9.162,
+      "dd_from_20d_high_pct": -2.48
     },
     "cot_jpy": {
       "net_position": -152125,
@@ -122,24 +116,24 @@
       "available_from": "2026-07-24"
     },
     "dxy": {
-      "last": 100.353,
-      "chg_5d_pct": -1.1
+      "last": 100.11,
+      "chg_5d_pct": -1.34
     },
     "gold": {
-      "last": 4099.9,
-      "chg_5d_pct": 0.79
+      "last": 4105.8,
+      "chg_5d_pct": 0.94
     },
     "btc": {
-      "last": 63691.19,
-      "chg_5d_pct": -2.52
+      "last": 62404.33,
+      "chg_5d_pct": -4.49
     },
     "ndx": {
-      "last": 28106.35,
-      "chg_5d_pct": -1.22
+      "last": 28016.29,
+      "chg_5d_pct": -0.4
     },
     "spx": {
-      "last": 7437.63,
-      "chg_5d_pct": 0.4
+      "last": 7426.44,
+      "chg_5d_pct": 0.2
     },
     "us2y": {
       "last": 4.13,
@@ -298,6 +292,22 @@
       "to": "WATCH",
       "value": 59.2,
       "reason": "CUSI เปลี่ยน +13.2 จุดใน 1 วัน (เกินเกณฑ์ 10)"
+    },
+    {
+      "ts": "2026-07-31T15:26:41+00:00",
+      "type": "level_change",
+      "from": "WATCH",
+      "to": "STRESS",
+      "value": 64.7,
+      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 64.7)"
+    },
+    {
+      "ts": "2026-07-31T15:26:41+00:00",
+      "type": "jump",
+      "from": "WATCH",
+      "to": "STRESS",
+      "value": 64.7,
+      "reason": "CUSI เปลี่ยน +18.7 จุดใน 1 วัน (เกินเกณฑ์ 10)"
     }
   ],
   "data_quality": {
@@ -381,21 +391,21 @@
   "cusi_lite": {
     "components": {
       "jpy_momentum_1h": {
-        "z": -0.705,
-        "bar_time": "2026-07-31T14:00:00+01:00",
-        "age_hours": 0.1,
+        "z": 0.001,
+        "bar_time": "2026-07-31T16:00:00+01:00",
+        "age_hours": 0.4,
         "bars": 545
       },
       "vix_1h": {
-        "z": -1.125,
-        "bar_time": "2026-07-31T13:00:00+01:00",
-        "age_hours": 1.1,
-        "bars": 317
+        "z": -0.999,
+        "bar_time": "2026-07-31T16:00:00+01:00",
+        "age_hours": 0.4,
+        "bars": 318
       },
       "fx_vol_1h": {
-        "z": 1.563,
-        "bar_time": "2026-07-31T14:00:00+01:00",
-        "age_hours": 0.1,
+        "z": 1.676,
+        "bar_time": "2026-07-31T16:00:00+01:00",
+        "age_hours": 0.4,
         "bars": 545
       }
     },
@@ -405,14 +415,14 @@
       "vix_1h": 0.33,
       "fx_vol_1h": 0.22
     },
-    "as_of": "2026-07-31T14:00:00+01:00",
-    "computed_at": "2026-07-31T13:03:08+00:00",
+    "as_of": "2026-07-31T16:00:00+01:00",
+    "computed_at": "2026-07-31T15:26:41+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
-    "value": 44.3,
+    "value": 50.7,
     "level": "WATCH",
     "level_color": "#d29922",
-    "weighted_z": -0.345,
+    "weighted_z": 0.039,
     "weight_coverage": 1.0
   }
 }
