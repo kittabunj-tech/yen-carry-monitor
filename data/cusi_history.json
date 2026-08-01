@@ -1,5 +1,5 @@
 {
-  "count": 799,
+  "count": 800,
   "levels": [
     {
       "name": "CALM",
@@ -4015,8 +4015,13 @@
     },
     {
       "date": "2026-07-31",
-      "value": 65.7,
+      "value": 60.1,
       "level": "STRESS"
+    },
+    {
+      "date": "2026-08-01",
+      "value": 93.2,
+      "level": "UNWIND"
     }
   ]
 }
