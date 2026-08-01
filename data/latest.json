@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T06:11:26+07:00",
+  "generated_at": "2026-08-01T08:03:25+07:00",
   "data_as_of": "2026-08-01T00:00:00",
   "schema_version": "1.0",
   "cusi": {
@@ -136,8 +136,8 @@
       "chg_5d_pct": 0.76
     },
     "btc": {
-      "last": 62944.12,
-      "chg_5d_pct": -3.67
+      "last": 62893.51,
+      "chg_5d_pct": -3.74
     },
     "ndx": {
       "last": 28274.2,
@@ -152,12 +152,17 @@
       "chg_5d_bps": 9.5
     },
     "fx_implied": {
-      "iv_atm_1m_pct": 10.1,
-      "rr_25d_pct": -1.13,
+      "n_calls_used": 8,
+      "n_puts_used": 6,
+      "iv_atm_1m_pct": 10.59,
+      "rr_25d_pct": -2.05,
+      "rr_convention": "usdjpy (ติดลบ = hedge เยนแข็งแพง)",
+      "quality": "ok",
+      "source": "FXY_options_yahoo",
       "expiry": "2026-08-21",
-      "asof_date": "2026-07-31",
-      "source": "history_cache",
-      "quality": "cached"
+      "dte_days": 20,
+      "spot": 57.66,
+      "asof": "2026-08-01T01:03:25+00:00"
     }
   },
   "alerts": [],
@@ -168,32 +173,13 @@
     "stale": [],
     "tickers_ok": 13,
     "tickers_total": 13,
-    "indicator_rows": 1492
+    "indicator_rows": 1491
   },
   "events": {
-    "risk_active": true,
+    "risk_active": false,
     "risk_window_days": 3,
-    "risk_events": [
-      {
-        "type": "boj_mpm",
-        "label": "BOJ Monetary Policy Meeting",
-        "start_date": "2026-07-30",
-        "date": "2026-07-31",
-        "approx": false,
-        "source": "boj",
-        "days_until": 0
-      }
-    ],
+    "risk_events": [],
     "upcoming": [
-      {
-        "type": "boj_mpm",
-        "label": "BOJ Monetary Policy Meeting",
-        "start_date": "2026-07-30",
-        "date": "2026-07-31",
-        "approx": false,
-        "source": "boj",
-        "days_until": 0
-      },
       {
         "type": "jp_cpi",
         "label": "Japan CPI (national)",
@@ -201,7 +187,7 @@
         "date": "2026-08-21",
         "approx": true,
         "source": "rule:third_friday",
-        "days_until": 21
+        "days_until": 20
       },
       {
         "type": "fomc",
@@ -210,7 +196,7 @@
         "date": "2026-09-16",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 46
+        "days_until": 45
       },
       {
         "type": "boj_mpm",
@@ -219,7 +205,7 @@
         "date": "2026-09-18",
         "approx": false,
         "source": "boj",
-        "days_until": 48
+        "days_until": 47
       },
       {
         "type": "jp_cpi",
@@ -228,12 +214,21 @@
         "date": "2026-09-18",
         "approx": true,
         "source": "rule:third_friday",
-        "days_until": 49
+        "days_until": 48
+      },
+      {
+        "type": "jp_cpi",
+        "label": "Japan CPI (national)",
+        "start_date": "2026-10-16",
+        "date": "2026-10-16",
+        "approx": true,
+        "source": "rule:third_friday",
+        "days_until": 76
       }
     ],
     "sources": {
-      "boj": "cache",
-      "fomc": "cache",
+      "boj": "scrape",
+      "fomc": "scrape",
       "jp_cpi": "rule+overrides"
     }
   },
@@ -242,19 +237,19 @@
       "jpy_momentum_1h": {
         "z": 1.738,
         "bar_time": "2026-07-31T22:00:00+01:00",
-        "age_hours": 2.2,
+        "age_hours": 4.1,
         "bars": 543
       },
       "vix_1h": {
         "z": -1.926,
         "bar_time": "2026-07-31T21:00:00+01:00",
-        "age_hours": 3.2,
+        "age_hours": 5.1,
         "bars": 317
       },
       "fx_vol_1h": {
         "z": 2.174,
         "bar_time": "2026-07-31T22:00:00+01:00",
-        "age_hours": 2.2,
+        "age_hours": 4.1,
         "bars": 543
       }
     },
@@ -265,7 +260,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-07-31T22:00:00+01:00",
-    "computed_at": "2026-07-31T23:11:26+00:00",
+    "computed_at": "2026-08-01T01:03:25+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 60.4,

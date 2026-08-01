@@ -1,19 +1,11 @@
 {
-  "generated_at": "2026-07-31T23:11:26+00:00",
+  "generated_at": "2026-08-01T01:03:24+00:00",
   "sources": {
-    "boj": "cache",
-    "fomc": "cache",
+    "boj": "scrape",
+    "fomc": "scrape",
     "jp_cpi": "rule+overrides"
   },
   "events": [
-    {
-      "type": "jp_cpi",
-      "label": "Japan CPI (national)",
-      "start_date": "2026-07-17",
-      "date": "2026-07-17",
-      "approx": true,
-      "source": "rule:third_friday"
-    },
     {
       "type": "fomc",
       "label": "FOMC Meeting",
@@ -127,6 +119,14 @@
       "source": "rule:third_friday"
     },
     {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-01-21",
+      "date": "2027-01-22",
+      "approx": false,
+      "source": "boj"
+    },
+    {
       "type": "fomc",
       "label": "FOMC Meeting",
       "start_date": "2027-01-26",
@@ -135,12 +135,36 @@
       "source": "federalreserve"
     },
     {
+      "type": "jp_cpi",
+      "label": "Japan CPI (national)",
+      "start_date": "2027-02-19",
+      "date": "2027-02-19",
+      "approx": true,
+      "source": "rule:third_friday"
+    },
+    {
       "type": "fomc",
       "label": "FOMC Meeting",
       "start_date": "2027-03-16",
       "date": "2027-03-17",
       "approx": false,
       "source": "federalreserve"
+    },
+    {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-03-17",
+      "date": "2027-03-18",
+      "approx": false,
+      "source": "boj"
+    },
+    {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-04-27",
+      "date": "2027-04-28",
+      "approx": false,
+      "source": "boj"
     },
     {
       "type": "fomc",
@@ -157,6 +181,22 @@
       "date": "2027-06-09",
       "approx": false,
       "source": "federalreserve"
+    },
+    {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-06-10",
+      "date": "2027-06-11",
+      "approx": false,
+      "source": "boj"
+    },
+    {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-07-21",
+      "date": "2027-07-22",
+      "approx": false,
+      "source": "boj"
     },
     {
       "type": "fomc",
