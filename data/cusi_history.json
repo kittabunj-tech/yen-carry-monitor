@@ -1,5 +1,5 @@
 {
-  "count": 800,
+  "count": 799,
   "levels": [
     {
       "name": "CALM",
@@ -24,18 +24,13 @@
   ],
   "history": [
     {
-      "date": "2023-07-05",
-      "value": 43.4,
-      "level": "WATCH"
-    },
-    {
       "date": "2023-07-06",
       "value": 46.0,
       "level": "WATCH"
     },
     {
       "date": "2023-07-07",
-      "value": 47.4,
+      "value": 47.0,
       "level": "WATCH"
     },
     {
@@ -50,7 +45,7 @@
     },
     {
       "date": "2023-07-12",
-      "value": 58.9,
+      "value": 55.7,
       "level": "WATCH"
     },
     {
@@ -65,22 +60,22 @@
     },
     {
       "date": "2023-07-17",
-      "value": 56.5,
+      "value": 56.4,
       "level": "WATCH"
     },
     {
       "date": "2023-07-18",
-      "value": 54.4,
+      "value": 54.0,
       "level": "WATCH"
     },
     {
       "date": "2023-07-19",
-      "value": 51.7,
+      "value": 52.6,
       "level": "WATCH"
     },
     {
       "date": "2023-07-20",
-      "value": 49.7,
+      "value": 49.4,
       "level": "WATCH"
     },
     {
@@ -4015,13 +4010,13 @@
     },
     {
       "date": "2026-07-31",
-      "value": 60.1,
-      "level": "STRESS"
+      "value": 58.7,
+      "level": "WATCH"
     },
     {
-      "date": "2026-08-01",
-      "value": 93.2,
-      "level": "UNWIND"
+      "date": "2026-08-03",
+      "value": 68.0,
+      "level": "STRESS"
     }
   ]
 }
