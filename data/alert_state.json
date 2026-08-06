@@ -1,6 +1,6 @@
 {
-  "level": "UNWIND",
-  "value": 85.1,
+  "level": "STRESS",
+  "value": 76.8,
   "as_of": "2026-08-06",
-  "updated_at": "2026-08-06T06:40:17+00:00"
+  "updated_at": "2026-08-06T09:46:09+00:00"
 }
