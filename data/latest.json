@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-07T07:10:49+07:00",
+  "generated_at": "2026-08-07T08:51:49+07:00",
   "data_as_of": "2026-08-07T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 77.0,
+    "value": 72.9,
     "level": "STRESS",
     "level_color": "#db6d28",
     "level_emoji": "🟠",
-    "change_1d": 10.1,
+    "change_1d": 8.9,
     "as_of": "2026-08-07",
     "weights": {
       "jpy_momentum": 0.2,
@@ -21,53 +21,53 @@
       "mxnjpy_drawdown": 0.05
     },
     "components": {
-      "audjpy_drawdown": {
-        "z": 2.014,
-        "weight": 0.15,
-        "contribution": 0.3021,
-        "share_pct": 31.0
-      },
       "jpy_momentum": {
-        "z": 1.102,
+        "z": 1.172,
         "weight": 0.2,
-        "contribution": 0.2203,
-        "share_pct": 22.6
-      },
-      "fx_realized_vol": {
-        "z": 1.799,
-        "weight": 0.1,
-        "contribution": 0.1799,
-        "share_pct": 18.5
+        "contribution": 0.2344,
+        "share_pct": 34.1
       },
       "cot_positioning": {
         "z": 1.759,
         "weight": 0.1,
         "contribution": 0.1759,
-        "share_pct": 18.1
+        "share_pct": 25.6
+      },
+      "fx_realized_vol": {
+        "z": 1.752,
+        "weight": 0.1,
+        "contribution": 0.1752,
+        "share_pct": 25.5
       },
       "mxnjpy_drawdown": {
-        "z": 1.898,
+        "z": 1.977,
         "weight": 0.05,
-        "contribution": 0.0949,
-        "share_pct": 9.8
+        "contribution": 0.0989,
+        "share_pct": 14.4
+      },
+      "nikkei_momentum": {
+        "z": 0.069,
+        "weight": 0.05,
+        "contribution": 0.0035,
+        "share_pct": 0.5
       }
     }
   },
   "indicators": {
     "usdjpy": {
-      "last": 158.447,
-      "chg_1d_pct": 0.54,
-      "chg_5d_pct": -1.08,
-      "z_5d": -1.1
+      "last": 158.321,
+      "chg_1d_pct": 0.46,
+      "chg_5d_pct": -1.16,
+      "z_5d": -1.17
     },
     "audjpy": {
-      "last": 111.399,
-      "chg_1d_pct": 0.16,
-      "dd_from_20d_high_pct": -2.65
+      "last": 111.22,
+      "chg_1d_pct": 0.09,
+      "dd_from_20d_high_pct": -2.81
     },
     "jgb10y": {
-      "last": 2.813,
-      "chg_5d_bps": 5.6,
+      "last": 2.773,
+      "chg_5d_bps": -2.8,
       "source": "MOF"
     },
     "us10y": {
@@ -75,9 +75,9 @@
       "chg_5d_bps": 0.7
     },
     "spread_us_jp": {
-      "last": 1.857,
-      "chg_20d_bps": 18.4,
-      "z": -0.85
+      "last": 1.897,
+      "chg_20d_bps": 22.4,
+      "z": -0.7
     },
     "vix": {
       "last": 15.15,
@@ -88,18 +88,18 @@
       "last": 76.12
     },
     "fx_vol": {
-      "realized_10d": 12.67,
+      "realized_10d": 12.52,
       "atr_pct_14": 0.85,
-      "vol_of_vol": 4.02,
-      "percentile_3y": 84.9
+      "vol_of_vol": 4.01,
+      "percentile_3y": 84.3
     },
     "nikkei": {
-      "last": 66300.44,
-      "chg_5d_pct": 7.92
+      "last": 64840.84,
+      "chg_5d_pct": 0.74
     },
     "mxnjpy": {
-      "last": 9.183,
-      "dd_from_20d_high_pct": -2.26
+      "last": 9.177,
+      "dd_from_20d_high_pct": -2.32
     },
     "cot_jpy": {
       "net_position": -163412,
@@ -110,16 +110,16 @@
       "available_from": "2026-07-31"
     },
     "dxy": {
-      "last": 99.952,
-      "chg_5d_pct": -0.06
+      "last": 99.935,
+      "chg_5d_pct": -0.07
     },
     "gold": {
-      "last": 4306.9,
-      "chg_5d_pct": 5.04
+      "last": 4308.0,
+      "chg_5d_pct": 5.07
     },
     "btc": {
-      "last": 64323.83,
-      "chg_5d_pct": 2.49
+      "last": 64354.53,
+      "chg_5d_pct": 2.54
     },
     "ndx": {
       "last": 29373.33,
@@ -134,176 +134,20 @@
       "chg_5d_bps": 6.4
     },
     "fx_implied": {
-      "iv_atm_1m_pct": 9.77,
-      "rr_25d_pct": -3.01,
+      "n_calls_used": 20,
+      "n_puts_used": 14,
+      "iv_atm_1m_pct": 8.36,
+      "rr_25d_pct": -3.26,
+      "rr_convention": "usdjpy (ติดลบ = hedge เยนแข็งแพง)",
+      "quality": "ok",
+      "source": "FXY_options_yahoo",
       "expiry": "2026-09-18",
-      "asof_date": "2026-08-06",
-      "source": "history_cache",
-      "quality": "cached"
+      "dte_days": 42,
+      "spot": 57.89,
+      "asof": "2026-08-07T01:51:48+00:00"
     }
   },
-  "alerts": [
-    {
-      "ts": "2026-08-01T05:33:52+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 93.2,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 93.2)"
-    },
-    {
-      "ts": "2026-08-01T05:33:52+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 93.2,
-      "reason": "CUSI เปลี่ยน +33.1 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-03T15:09:15+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 70.0,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 70.0)"
-    },
-    {
-      "ts": "2026-08-03T23:13:02+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 93.4,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 93.4)"
-    },
-    {
-      "ts": "2026-08-03T23:13:02+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 93.4,
-      "reason": "CUSI เปลี่ยน +25.9 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-04T00:59:22+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 68.0,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 68.0)"
-    },
-    {
-      "ts": "2026-08-04T03:29:24+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 90.9,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 90.9)"
-    },
-    {
-      "ts": "2026-08-04T03:29:24+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 90.9,
-      "reason": "CUSI เปลี่ยน +22.9 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-04T09:44:33+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 79.4,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 79.4)"
-    },
-    {
-      "ts": "2026-08-04T23:11:56+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.9,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 89.9)"
-    },
-    {
-      "ts": "2026-08-04T23:11:56+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.9,
-      "reason": "CUSI เปลี่ยน +17.9 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-05T06:36:58+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 71.9,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 71.9)"
-    },
-    {
-      "ts": "2026-08-05T15:22:36+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 58.7,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 58.7)"
-    },
-    {
-      "ts": "2026-08-05T15:22:36+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 58.7,
-      "reason": "CUSI เปลี่ยน -13.3 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-05T17:50:21+00:00",
-      "type": "level_change",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 66.5,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 66.5)"
-    },
-    {
-      "ts": "2026-08-05T23:11:00+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.4,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 89.4)"
-    },
-    {
-      "ts": "2026-08-05T23:11:00+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.4,
-      "reason": "CUSI เปลี่ยน +20.5 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-06T09:46:09+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 76.8,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 76.8)"
-    },
-    {
-      "ts": "2026-08-06T09:46:09+00:00",
-      "type": "jump",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 76.8,
-      "reason": "CUSI เปลี่ยน +10.5 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-07T00:10:49+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "STRESS",
-      "value": 77.0,
-      "reason": "CUSI เปลี่ยน +10.1 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    }
-  ],
+  "alerts": [],
   "data_quality": {
     "jgb_source": "MOF",
     "jgb_is_proxy": false,
@@ -311,7 +155,7 @@
     "stale": [],
     "tickers_ok": 13,
     "tickers_total": 13,
-    "indicator_rows": 1492
+    "indicator_rows": 1491
   },
   "events": {
     "risk_active": false,
@@ -365,8 +209,8 @@
       }
     ],
     "sources": {
-      "boj": "cache",
-      "fomc": "cache",
+      "boj": "scrape",
+      "fomc": "scrape",
       "jp_cpi": "rule+overrides"
     }
   },
@@ -375,19 +219,19 @@
       "jpy_momentum_1h": {
         "z": -0.915,
         "bar_time": "2026-08-07T01:00:00+01:00",
-        "age_hours": 0.2,
+        "age_hours": 1.9,
         "bars": 545
       },
       "vix_1h": {
         "z": -1.392,
         "bar_time": "2026-08-06T21:00:00+01:00",
-        "age_hours": 4.2,
+        "age_hours": 5.9,
         "bars": 322
       },
       "fx_vol_1h": {
         "z": -0.527,
         "bar_time": "2026-08-07T01:00:00+01:00",
-        "age_hours": 0.2,
+        "age_hours": 1.9,
         "bars": 545
       }
     },
@@ -398,7 +242,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-08-07T01:00:00+01:00",
-    "computed_at": "2026-08-07T00:10:49+00:00",
+    "computed_at": "2026-08-07T01:51:49+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 33.5,
