@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-08-14T04:55:25+07:00",
+  "generated_at": "2026-08-14T05:54:07+07:00",
   "data_as_of": "2026-08-13T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 49.8,
+    "value": 49.7,
     "level": "WATCH",
     "level_color": "#d29922",
     "level_emoji": "🟡",
-    "change_1d": 1.2,
+    "change_1d": 1.1,
     "as_of": "2026-08-13",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,49 +25,49 @@
         "z": 2.084,
         "weight": 0.1,
         "contribution": 0.2084,
-        "share_pct": 28.1
+        "share_pct": 28.7
       },
       "audjpy_drawdown": {
-        "z": 0.883,
+        "z": 0.821,
         "weight": 0.15,
-        "contribution": 0.1324,
-        "share_pct": 17.9
+        "contribution": 0.1231,
+        "share_pct": 16.9
       },
       "cot_positioning": {
         "z": 0.24,
         "weight": 0.1,
         "contribution": 0.024,
-        "share_pct": 3.2
+        "share_pct": 3.3
       },
       "mxnjpy_drawdown": {
-        "z": -0.257,
+        "z": -0.135,
         "weight": 0.05,
-        "contribution": -0.0128,
-        "share_pct": 1.7
+        "contribution": -0.0067,
+        "share_pct": 0.9
       },
       "move": {
         "z": -0.476,
         "weight": 0.05,
         "contribution": -0.0238,
-        "share_pct": 3.2
+        "share_pct": 3.3
       },
       "spread_compression": {
         "z": -0.384,
         "weight": 0.15,
         "contribution": -0.0575,
-        "share_pct": 7.8
+        "share_pct": 7.9
       },
       "vix": {
-        "z": -0.616,
+        "z": -0.626,
         "weight": 0.15,
-        "contribution": -0.0924,
-        "share_pct": 12.5
+        "contribution": -0.0939,
+        "share_pct": 12.9
       },
       "jpy_momentum": {
         "z": -0.947,
         "weight": 0.2,
         "contribution": -0.1894,
-        "share_pct": 25.6
+        "share_pct": 26.1
       }
     }
   },
@@ -79,9 +79,9 @@
       "z_5d": 0.95
     },
     "audjpy": {
-      "last": 112.549,
-      "chg_1d_pct": 0.04,
-      "dd_from_20d_high_pct": -1.64
+      "last": 112.613,
+      "chg_1d_pct": 0.1,
+      "dd_from_20d_high_pct": -1.59
     },
     "jgb10y": {
       "last": 2.815,
@@ -116,8 +116,8 @@
       "chg_5d_pct": 5.58
     },
     "mxnjpy": {
-      "last": 9.343,
-      "dd_from_20d_high_pct": -0.55
+      "last": 9.334,
+      "dd_from_20d_high_pct": -0.65
     },
     "cot_jpy": {
       "net_position": -45473,
@@ -128,16 +128,16 @@
       "available_from": "2026-08-07"
     },
     "dxy": {
-      "last": 99.955,
+      "last": 99.949,
       "chg_5d_pct": -0.02
     },
     "gold": {
-      "last": 4407.1,
-      "chg_5d_pct": 3.89
+      "last": 4415.5,
+      "chg_5d_pct": 4.09
     },
     "btc": {
-      "last": 63390.73,
-      "chg_5d_pct": -2.33
+      "last": 63462.27,
+      "chg_5d_pct": -2.22
     },
     "ndx": {
       "last": 30084.5,
@@ -166,7 +166,7 @@
     "jgb_is_proxy": false,
     "missing": [],
     "stale": [
-      "spx"
+      "usdjpy"
     ],
     "tickers_ok": 13,
     "tickers_total": 13,
@@ -232,20 +232,20 @@
   "cusi_lite": {
     "components": {
       "jpy_momentum_1h": {
-        "z": -0.332,
-        "bar_time": "2026-08-13T22:00:00+01:00",
+        "z": -0.307,
+        "bar_time": "2026-08-13T23:00:00+01:00",
         "age_hours": 0.9,
         "bars": 546
       },
       "vix_1h": {
         "z": -0.865,
         "bar_time": "2026-08-13T21:00:00+01:00",
-        "age_hours": 1.9,
+        "age_hours": 2.9,
         "bars": 322
       },
       "fx_vol_1h": {
-        "z": -0.691,
-        "bar_time": "2026-08-13T22:00:00+01:00",
+        "z": -0.69,
+        "bar_time": "2026-08-13T23:00:00+01:00",
         "age_hours": 0.9,
         "bars": 546
       }
@@ -256,14 +256,14 @@
       "vix_1h": 0.33,
       "fx_vol_1h": 0.22
     },
-    "as_of": "2026-08-13T22:00:00+01:00",
-    "computed_at": "2026-08-13T21:55:25+00:00",
+    "as_of": "2026-08-13T23:00:00+01:00",
+    "computed_at": "2026-08-13T22:54:07+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
-    "value": 40.2,
+    "value": 40.4,
     "level": "WATCH",
     "level_color": "#d29922",
-    "weighted_z": -0.587,
+    "weighted_z": -0.575,
     "weight_coverage": 1.0
   }
 }
