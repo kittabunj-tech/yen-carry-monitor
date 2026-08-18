@@ -183,7 +183,7 @@
       null,
       null,
       159.223,
-      159.608
+      159.615
     ],
     "audjpy": [
       113.583,
@@ -275,7 +275,7 @@
       null,
       null,
       112.805,
-      null
+      113.057
     ],
     "mxnjpy": [
       9.166,
@@ -367,7 +367,7 @@
       null,
       null,
       9.3519,
-      9.328
+      9.325
     ],
     "nikkei": [
       61684.1406,
@@ -431,8 +431,8 @@
       null,
       null,
       null,
-      null,
-      null,
+      66232.1875,
+      66115.6016,
       66422.6016,
       64611.1484,
       null,
@@ -441,7 +441,7 @@
       62364.9219,
       61434.1914,
       61867.4297,
-      null,
+      64362.0195,
       null,
       null,
       63754.8984,
@@ -551,28 +551,67 @@
       null,
       null,
       15.19,
-      15.7
+      15.66
     ],
     "move": [
+      79.72,
+      78.43,
       null,
       null,
       null,
+      74.95,
+      70.9,
+      69.74,
+      70.22,
       null,
       null,
+      73.33,
+      73.43,
+      73.58,
+      71.16,
+      75.2,
       null,
       null,
+      76.98,
+      77.03,
+      73.95,
+      69.45,
+      69.36,
       null,
       null,
+      69.38,
+      67.28,
+      70.66,
+      65.39,
       null,
       null,
       null,
+      70.02,
+      68.78,
+      69.06,
+      67.1,
+      66.79,
       null,
       null,
+      68.14,
+      71.96,
+      68.56,
+      65.4,
       null,
       null,
       null,
+      65.76,
+      70.25,
+      72.41,
+      68.89,
+      69.55,
       null,
       null,
+      77.77,
+      75.03,
+      68.48,
+      68.16,
+      70.88,
       null,
       null,
       null,
@@ -604,45 +643,6 @@
       null,
       null,
       null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      75.6302,
       null
     ],
     "us10y": [
@@ -735,7 +735,7 @@
       null,
       null,
       4.724,
-      4.712
+      4.704
     ],
     "jgb10y": [
       2.748,
@@ -919,7 +919,7 @@
       null,
       null,
       1.846,
-      1.834
+      1.826
     ],
     "spread_chg_20d_bps": [
       null,
@@ -1103,7 +1103,7 @@
       null,
       null,
       5.1314,
-      5.1112
+      5.1139
     ],
     "fx_atr_pct_14": [
       0.661,
@@ -1287,7 +1287,7 @@
       null,
       null,
       4.604,
-      4.4916
+      4.4915
     ]
   }
 }
