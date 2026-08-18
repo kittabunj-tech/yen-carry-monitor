@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-18T23:29:31+00:00",
+  "generated_at": "2026-08-18T23:47:58+00:00",
   "sources": {
-    "boj": "cache",
-    "fomc": "cache",
+    "boj": "scrape",
+    "fomc": "scrape",
     "jp_cpi": "rule+overrides"
   },
   "events": [
@@ -213,6 +213,14 @@
       "date": "2027-09-15",
       "approx": false,
       "source": "federalreserve"
+    },
+    {
+      "type": "boj_mpm",
+      "label": "BOJ Monetary Policy Meeting",
+      "start_date": "2027-09-21",
+      "date": "2027-09-22",
+      "approx": false,
+      "source": "boj"
     }
   ]
 }
