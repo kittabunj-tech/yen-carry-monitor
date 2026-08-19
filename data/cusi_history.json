@@ -24,18 +24,13 @@
   ],
   "history": [
     {
-      "date": "2023-07-20",
-      "value": 45.0,
-      "level": "WATCH"
-    },
-    {
       "date": "2023-07-21",
       "value": 40.5,
       "level": "WATCH"
     },
     {
       "date": "2023-07-24",
-      "value": 38.0,
+      "value": 38.6,
       "level": "CALM"
     },
     {
@@ -50,7 +45,7 @@
     },
     {
       "date": "2023-07-27",
-      "value": 45.3,
+      "value": 41.9,
       "level": "WATCH"
     },
     {
@@ -70,17 +65,17 @@
     },
     {
       "date": "2023-08-02",
-      "value": 47.3,
+      "value": 47.7,
       "level": "WATCH"
     },
     {
       "date": "2023-08-03",
-      "value": 47.5,
+      "value": 46.2,
       "level": "WATCH"
     },
     {
       "date": "2023-08-04",
-      "value": 51.3,
+      "value": 49.1,
       "level": "WATCH"
     },
     {
@@ -3915,57 +3910,57 @@
     },
     {
       "date": "2026-07-20",
-      "value": 44.8,
+      "value": 45.0,
       "level": "WATCH"
     },
     {
       "date": "2026-07-21",
-      "value": 43.4,
+      "value": 41.6,
       "level": "WATCH"
     },
     {
       "date": "2026-07-22",
-      "value": 39.7,
+      "value": 37.1,
       "level": "CALM"
     },
     {
       "date": "2026-07-23",
-      "value": 42.3,
+      "value": 42.8,
       "level": "WATCH"
     },
     {
       "date": "2026-07-24",
-      "value": 42.6,
+      "value": 45.0,
       "level": "WATCH"
     },
     {
       "date": "2026-07-27",
-      "value": 40.9,
+      "value": 44.3,
       "level": "WATCH"
     },
     {
       "date": "2026-07-28",
-      "value": 43.8,
+      "value": 43.7,
       "level": "WATCH"
     },
     {
       "date": "2026-07-29",
-      "value": 47.8,
+      "value": 46.3,
       "level": "WATCH"
     },
     {
       "date": "2026-07-30",
-      "value": 46.0,
+      "value": 46.5,
       "level": "WATCH"
     },
     {
       "date": "2026-07-31",
-      "value": 58.7,
-      "level": "WATCH"
+      "value": 63.5,
+      "level": "STRESS"
     },
     {
       "date": "2026-08-03",
-      "value": 68.1,
+      "value": 67.7,
       "level": "STRESS"
     },
     {
@@ -3975,17 +3970,17 @@
     },
     {
       "date": "2026-08-05",
-      "value": 66.3,
+      "value": 67.0,
       "level": "STRESS"
     },
     {
       "date": "2026-08-06",
-      "value": 64.5,
+      "value": 62.2,
       "level": "STRESS"
     },
     {
       "date": "2026-08-07",
-      "value": 59.4,
+      "value": 57.4,
       "level": "WATCH"
     },
     {
@@ -3995,7 +3990,7 @@
     },
     {
       "date": "2026-08-11",
-      "value": 51.5,
+      "value": 51.9,
       "level": "WATCH"
     },
     {
@@ -4005,27 +4000,32 @@
     },
     {
       "date": "2026-08-13",
-      "value": 51.5,
+      "value": 51.1,
       "level": "WATCH"
     },
     {
       "date": "2026-08-14",
-      "value": 48.0,
+      "value": 45.0,
       "level": "WATCH"
     },
     {
       "date": "2026-08-17",
-      "value": 46.2,
+      "value": 46.6,
       "level": "WATCH"
     },
     {
       "date": "2026-08-18",
-      "value": 49.9,
+      "value": 50.4,
       "level": "WATCH"
     },
     {
       "date": "2026-08-19",
-      "value": 50.3,
+      "value": 51.6,
+      "level": "WATCH"
+    },
+    {
+      "date": "2026-08-20",
+      "value": 57.7,
       "level": "WATCH"
     }
   ]
