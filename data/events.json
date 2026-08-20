@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-19T23:47:34+00:00",
+  "generated_at": "2026-08-20T01:45:25+00:00",
   "sources": {
-    "boj": "scrape",
-    "fomc": "scrape",
+    "boj": "cache",
+    "fomc": "cache",
     "jp_cpi": "rule+overrides"
   },
   "events": [
