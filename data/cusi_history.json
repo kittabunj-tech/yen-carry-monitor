@@ -24,18 +24,13 @@
   ],
   "history": [
     {
-      "date": "2023-07-31",
-      "value": 48.0,
-      "level": "WATCH"
-    },
-    {
       "date": "2023-08-01",
       "value": 44.4,
       "level": "WATCH"
     },
     {
       "date": "2023-08-02",
-      "value": 42.7,
+      "value": 43.2,
       "level": "WATCH"
     },
     {
@@ -50,7 +45,7 @@
     },
     {
       "date": "2023-08-07",
-      "value": 49.3,
+      "value": 45.0,
       "level": "WATCH"
     },
     {
@@ -70,8 +65,8 @@
     },
     {
       "date": "2023-08-11",
-      "value": 40.7,
-      "level": "WATCH"
+      "value": 39.7,
+      "level": "CALM"
     },
     {
       "date": "2023-08-14",
@@ -80,7 +75,7 @@
     },
     {
       "date": "2023-08-15",
-      "value": 41.2,
+      "value": 41.1,
       "level": "WATCH"
     },
     {
@@ -4020,7 +4015,12 @@
     },
     {
       "date": "2026-08-27",
-      "value": 42.3,
+      "value": 43.1,
+      "level": "WATCH"
+    },
+    {
+      "date": "2026-08-28",
+      "value": 43.8,
       "level": "WATCH"
     }
   ]
