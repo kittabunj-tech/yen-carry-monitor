@@ -1,20 +1,6 @@
 {
   "reports": [
     {
-      "report_date": "2022-07-26",
-      "available_from": "2022-07-29",
-      "net_speculative": -61481,
-      "noncomm_long": 43812,
-      "noncomm_short": 105293
-    },
-    {
-      "report_date": "2022-08-02",
-      "available_from": "2022-08-05",
-      "net_speculative": -42753,
-      "noncomm_long": 50433,
-      "noncomm_short": 93186
-    },
-    {
       "report_date": "2022-08-09",
       "available_from": "2022-08-12",
       "net_speculative": -25032,
@@ -1490,6 +1476,20 @@
       "net_speculative": -52893,
       "noncomm_long": 128932,
       "noncomm_short": 181825
+    },
+    {
+      "report_date": "2026-08-25",
+      "available_from": "2026-08-28",
+      "net_speculative": -63298,
+      "noncomm_long": 128340,
+      "noncomm_short": 191638
+    },
+    {
+      "report_date": "2026-09-01",
+      "available_from": "2026-09-04",
+      "net_speculative": -92227,
+      "noncomm_long": 117169,
+      "noncomm_short": 209396
     }
   ]
 }
