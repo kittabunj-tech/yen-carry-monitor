@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-08T16:32:06+07:00",
+  "generated_at": "2026-09-08T21:23:10+07:00",
   "data_as_of": "2026-09-08T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 78.5,
+    "value": 71.8,
     "level": "STRESS",
     "level_color": "#db6d28",
     "level_emoji": "🟠",
-    "change_1d": 13.7,
+    "change_1d": 7.1,
     "as_of": "2026-09-08",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,31 +25,31 @@
         "z": 3.0,
         "weight": 0.2,
         "contribution": 0.6,
-        "share_pct": 39.9
+        "share_pct": 39.7
       },
       "audjpy_drawdown": {
-        "z": 2.567,
+        "z": 2.219,
         "weight": 0.15,
-        "contribution": 0.385,
-        "share_pct": 25.6
+        "contribution": 0.3329,
+        "share_pct": 22.0
       },
       "fx_realized_vol": {
-        "z": 1.902,
+        "z": 1.857,
         "weight": 0.1,
-        "contribution": 0.1902,
-        "share_pct": 12.7
+        "contribution": 0.1857,
+        "share_pct": 12.3
       },
       "mxnjpy_drawdown": {
         "z": 3.0,
         "weight": 0.05,
         "contribution": 0.15,
-        "share_pct": 10.0
+        "share_pct": 9.9
       },
       "cot_positioning": {
         "z": 0.759,
         "weight": 0.1,
         "contribution": 0.0759,
-        "share_pct": 5.1
+        "share_pct": 5.0
       },
       "nikkei_momentum": {
         "z": 0.662,
@@ -57,25 +57,31 @@
         "contribution": 0.0331,
         "share_pct": 2.2
       },
-      "vix": {
-        "z": -0.455,
+      "spread_compression": {
+        "z": -0.391,
         "weight": 0.15,
-        "contribution": -0.0682,
-        "share_pct": 4.5
+        "contribution": -0.0587,
+        "share_pct": 3.9
+      },
+      "vix": {
+        "z": -0.492,
+        "weight": 0.15,
+        "contribution": -0.0738,
+        "share_pct": 4.9
       }
     }
   },
   "indicators": {
     "usdjpy": {
-      "last": 153.964,
-      "chg_1d_pct": -1.43,
-      "chg_5d_pct": -3.62,
+      "last": 154.067,
+      "chg_1d_pct": -1.36,
+      "chg_5d_pct": -3.56,
       "z_5d": -3.0
     },
     "audjpy": {
-      "last": 110.945,
-      "chg_1d_pct": -1.43,
-      "dd_from_20d_high_pct": -3.22
+      "last": 111.315,
+      "chg_1d_pct": -1.1,
+      "dd_from_20d_high_pct": -2.9
     },
     "jgb10y": {
       "last": 2.935,
@@ -83,35 +89,35 @@
       "source": "MOF"
     },
     "us10y": {
-      "last": 4.784,
-      "chg_5d_bps": 6.4
+      "last": 4.788,
+      "chg_5d_bps": 3.0
     },
     "spread_us_jp": {
-      "last": 1.849,
-      "chg_20d_bps": -3.5,
-      "z": -0.75
+      "last": 1.853,
+      "chg_20d_bps": -1.6,
+      "z": -0.72
     },
     "vix": {
-      "last": 15.79,
-      "chg_5d": -0.55,
-      "percentile_3y": 40.1
+      "last": 15.68,
+      "chg_5d": -0.66,
+      "percentile_3y": 38.4
     },
     "move": {
       "last": 73.1
     },
     "fx_vol": {
-      "realized_10d": 13.42,
-      "atr_pct_14": 1.07,
-      "vol_of_vol": 3.4,
-      "percentile_3y": 87.4
+      "realized_10d": 13.27,
+      "atr_pct_14": 1.06,
+      "vol_of_vol": 3.39,
+      "percentile_3y": 87.0
     },
     "nikkei": {
       "last": 65269.33,
       "chg_5d_pct": -1.43
     },
     "mxnjpy": {
-      "last": 9.046,
-      "dd_from_20d_high_pct": -4.03
+      "last": 9.069,
+      "dd_from_20d_high_pct": -3.79
     },
     "cot_jpy": {
       "net_position": -92227,
@@ -122,24 +128,24 @@
       "available_from": "2026-09-04"
     },
     "dxy": {
-      "last": 98.974,
-      "chg_5d_pct": -0.46
+      "last": 98.884,
+      "chg_5d_pct": -0.55
     },
     "gold": {
-      "last": 4439.7,
-      "chg_5d_pct": 0.19
+      "last": 4441.6,
+      "chg_5d_pct": 0.24
     },
     "btc": {
-      "last": 78466.66,
-      "chg_5d_pct": -3.45
+      "last": 78342.17,
+      "chg_5d_pct": -3.6
     },
     "ndx": {
-      "last": 29544.15,
-      "chg_5d_pct": 0.38
+      "last": 29481.61,
+      "chg_5d_pct": 0.08
     },
     "spx": {
-      "last": 7718.6,
-      "chg_5d_pct": 0.09
+      "last": 7682.41,
+      "chg_5d_pct": -0.05
     },
     "us2y": {
       "last": 4.2,
@@ -154,177 +160,13 @@
       "quality": "cached"
     }
   },
-  "alerts": [
-    {
-      "ts": "2026-08-05T15:22:36+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 58.7,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 58.7)"
-    },
-    {
-      "ts": "2026-08-05T15:22:36+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 58.7,
-      "reason": "CUSI เปลี่ยน -13.3 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-05T17:50:21+00:00",
-      "type": "level_change",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 66.5,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 66.5)"
-    },
-    {
-      "ts": "2026-08-05T23:11:00+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.4,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 89.4)"
-    },
-    {
-      "ts": "2026-08-05T23:11:00+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 89.4,
-      "reason": "CUSI เปลี่ยน +20.5 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-06T09:46:09+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 76.8,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 76.8)"
-    },
-    {
-      "ts": "2026-08-06T09:46:09+00:00",
-      "type": "jump",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 76.8,
-      "reason": "CUSI เปลี่ยน +10.5 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-07T00:10:49+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "STRESS",
-      "value": 77.0,
-      "reason": "CUSI เปลี่ยน +10.1 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-08-07T15:02:55+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 59.7,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 59.7)"
-    },
-    {
-      "ts": "2026-08-07T16:04:45+00:00",
-      "type": "level_change",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 65.0,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 65.0)"
-    },
-    {
-      "ts": "2026-08-08T03:39:34+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 59.0,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 59.0)"
-    },
-    {
-      "ts": "2026-08-10T02:27:05+00:00",
-      "type": "level_change",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 60.7,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 60.7)"
-    },
-    {
-      "ts": "2026-08-10T06:17:34+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "WATCH",
-      "value": 59.5,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 59.5)"
-    },
-    {
-      "ts": "2026-09-03T04:13:14+00:00",
-      "type": "level_change",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 62.1,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 62.1)"
-    },
-    {
-      "ts": "2026-09-03T04:13:14+00:00",
-      "type": "jump",
-      "from": "WATCH",
-      "to": "STRESS",
-      "value": 62.1,
-      "reason": "CUSI เปลี่ยน +17.8 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-09-03T23:57:09+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "STRESS",
-      "value": 76.2,
-      "reason": "CUSI เปลี่ยน +25.6 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-09-07T23:25:59+00:00",
-      "type": "level_change",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 87.8,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก STRESS เป็น UNWIND (CUSI 87.8)"
-    },
-    {
-      "ts": "2026-09-07T23:25:59+00:00",
-      "type": "jump",
-      "from": "STRESS",
-      "to": "UNWIND",
-      "value": 87.8,
-      "reason": "CUSI เปลี่ยน +18.6 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    },
-    {
-      "ts": "2026-09-08T09:32:06+00:00",
-      "type": "level_change",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 78.5,
-      "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 78.5)"
-    },
-    {
-      "ts": "2026-09-08T09:32:06+00:00",
-      "type": "jump",
-      "from": "UNWIND",
-      "to": "STRESS",
-      "value": 78.5,
-      "reason": "CUSI เปลี่ยน +13.7 จุดใน 1 วัน (เกินเกณฑ์ 10)"
-    }
-  ],
+  "alerts": [],
   "data_quality": {
     "jgb_source": "MOF",
     "jgb_is_proxy": false,
     "missing": [],
     "stale": [
       "move",
-      "ndx",
-      "spx",
-      "us10y",
       "us2y"
     ],
     "tickers_ok": 13,
@@ -391,22 +233,22 @@
   "cusi_lite": {
     "components": {
       "jpy_momentum_1h": {
-        "z": 0.058,
-        "bar_time": "2026-09-08T10:00:00+01:00",
-        "age_hours": 0.5,
-        "bars": 509
+        "z": -0.239,
+        "bar_time": "2026-09-08T15:00:00+01:00",
+        "age_hours": 0.4,
+        "bars": 514
       },
       "vix_1h": {
-        "z": 1.455,
-        "bar_time": "2026-09-08T10:00:00+01:00",
-        "age_hours": 0.5,
-        "bars": 292
+        "z": 1.332,
+        "bar_time": "2026-09-08T15:00:00+01:00",
+        "age_hours": 0.4,
+        "bars": 297
       },
       "fx_vol_1h": {
-        "z": 0.919,
-        "bar_time": "2026-09-08T10:00:00+01:00",
-        "age_hours": 0.5,
-        "bars": 509
+        "z": 1.217,
+        "bar_time": "2026-09-08T15:00:00+01:00",
+        "age_hours": 0.4,
+        "bars": 514
       }
     },
     "stale": [],
@@ -415,14 +257,14 @@
       "vix_1h": 0.33,
       "fx_vol_1h": 0.22
     },
-    "as_of": "2026-09-08T10:00:00+01:00",
-    "computed_at": "2026-09-08T09:32:06+00:00",
+    "as_of": "2026-09-08T15:00:00+01:00",
+    "computed_at": "2026-09-08T14:23:10+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
-    "value": 61.8,
-    "level": "STRESS",
-    "level_color": "#db6d28",
-    "weighted_z": 0.708,
+    "value": 60.0,
+    "level": "WATCH",
+    "level_color": "#d29922",
+    "weighted_z": 0.6,
     "weight_coverage": 1.0
   }
 }
