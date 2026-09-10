@@ -511,6 +511,22 @@
       "to": "STRESS",
       "value": 78.5,
       "reason": "ระดับ CUSI เปลี่ยนลงจาก UNWIND เป็น STRESS (CUSI 78.5)"
+    },
+    {
+      "ts": "2026-09-10T14:16:42+00:00",
+      "type": "level_change",
+      "from": "STRESS",
+      "to": "WATCH",
+      "value": 59.8,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 59.8)"
+    },
+    {
+      "ts": "2026-09-10T14:16:42+00:00",
+      "type": "jump",
+      "from": "STRESS",
+      "to": "WATCH",
+      "value": 59.8,
+      "reason": "CUSI เปลี่ยน -10.9 จุดใน 1 วัน (เกินเกณฑ์ 10)"
     }
   ]
 }
