@@ -535,6 +535,14 @@
       "to": "STRESS",
       "value": 69.0,
       "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 69.0)"
+    },
+    {
+      "ts": "2026-09-14T16:56:03+00:00",
+      "type": "level_change",
+      "from": "STRESS",
+      "to": "WATCH",
+      "value": 52.6,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 52.6)"
     }
   ]
 }
