@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T04:35:15+07:00",
-  "data_as_of": "2026-09-18T00:00:00",
+  "generated_at": "2026-09-19T07:09:16+07:00",
+  "data_as_of": "2026-09-19T00:00:00",
   "schema_version": "1.0",
   "cusi": {
     "value": 47.6,
@@ -136,8 +136,8 @@
       "chg_5d_pct": 0.16
     },
     "btc": {
-      "last": 81143.61,
-      "chg_5d_pct": 5.6
+      "last": 80853.38,
+      "chg_5d_pct": 5.23
     },
     "ndx": {
       "last": 29644.17,
@@ -171,38 +171,10 @@
     "indicator_rows": 1492
   },
   "events": {
-    "risk_active": true,
+    "risk_active": false,
     "risk_window_days": 3,
-    "risk_events": [
-      {
-        "type": "boj_mpm",
-        "label": "BOJ Monetary Policy Meeting",
-        "start_date": "2026-09-17",
-        "date": "2026-09-18",
-        "approx": false,
-        "source": "boj",
-        "days_until": 0
-      }
-    ],
+    "risk_events": [],
     "upcoming": [
-      {
-        "type": "boj_mpm",
-        "label": "BOJ Monetary Policy Meeting",
-        "start_date": "2026-09-17",
-        "date": "2026-09-18",
-        "approx": false,
-        "source": "boj",
-        "days_until": 0
-      },
-      {
-        "type": "jp_cpi",
-        "label": "Japan CPI (national)",
-        "start_date": "2026-09-18",
-        "date": "2026-09-18",
-        "approx": true,
-        "source": "rule:third_friday",
-        "days_until": 0
-      },
       {
         "type": "jp_cpi",
         "label": "Japan CPI (national)",
@@ -210,7 +182,7 @@
         "date": "2026-10-16",
         "approx": true,
         "source": "rule:third_friday",
-        "days_until": 28
+        "days_until": 27
       },
       {
         "type": "fomc",
@@ -219,7 +191,7 @@
         "date": "2026-10-28",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 39
+        "days_until": 38
       },
       {
         "type": "boj_mpm",
@@ -228,7 +200,25 @@
         "date": "2026-10-30",
         "approx": false,
         "source": "boj",
-        "days_until": 41
+        "days_until": 40
+      },
+      {
+        "type": "jp_cpi",
+        "label": "Japan CPI (national)",
+        "start_date": "2026-11-20",
+        "date": "2026-11-20",
+        "approx": true,
+        "source": "rule:third_friday",
+        "days_until": 62
+      },
+      {
+        "type": "fomc",
+        "label": "FOMC Meeting",
+        "start_date": "2026-12-08",
+        "date": "2026-12-09",
+        "approx": false,
+        "source": "federalreserve",
+        "days_until": 80
       }
     ],
     "sources": {
@@ -242,20 +232,20 @@
       "jpy_momentum_1h": {
         "z": -0.857,
         "bar_time": "2026-09-18T22:00:00+01:00",
-        "age_hours": 0.6,
-        "bars": 546
+        "age_hours": 3.2,
+        "bars": 544
       },
       "vix_1h": {
         "z": -0.962,
         "bar_time": "2026-09-18T21:00:00+01:00",
-        "age_hours": 1.6,
+        "age_hours": 4.2,
         "bars": 317
       },
       "fx_vol_1h": {
         "z": 1.276,
         "bar_time": "2026-09-18T22:00:00+01:00",
-        "age_hours": 0.6,
-        "bars": 546
+        "age_hours": 3.2,
+        "bars": 544
       }
     },
     "stale": [],
@@ -265,7 +255,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-09-18T22:00:00+01:00",
-    "computed_at": "2026-09-18T21:35:15+00:00",
+    "computed_at": "2026-09-19T00:09:16+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 43.0,
