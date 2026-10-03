@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-03T07:23:09+07:00",
+  "generated_at": "2026-10-03T09:13:40+07:00",
   "data_as_of": "2026-10-03T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 49.9,
+    "value": 49.3,
     "level": "WATCH",
     "level_color": "#d29922",
     "level_emoji": "🟡",
-    "change_1d": 1.0,
+    "change_1d": 0.4,
     "as_of": "2026-10-02",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,58 +25,64 @@
         "z": 1.271,
         "weight": 0.15,
         "contribution": 0.1906,
-        "share_pct": 15.6
+        "share_pct": 15.4
       },
       "move": {
         "z": 3.0,
         "weight": 0.05,
         "contribution": 0.15,
-        "share_pct": 12.3
+        "share_pct": 12.1
       },
       "mxnjpy_drawdown": {
         "z": 3.0,
         "weight": 0.05,
         "contribution": 0.15,
-        "share_pct": 12.3
+        "share_pct": 12.1
       },
       "jpy_momentum": {
-        "z": 0.597,
+        "z": 0.545,
         "weight": 0.2,
-        "contribution": 0.1194,
-        "share_pct": 9.8
+        "contribution": 0.1089,
+        "share_pct": 8.8
       },
       "fx_realized_vol": {
-        "z": -0.258,
+        "z": -0.251,
         "weight": 0.1,
-        "contribution": -0.0258,
-        "share_pct": 2.1
+        "contribution": -0.0251,
+        "share_pct": 2.0
+      },
+      "nikkei_momentum": {
+        "z": -0.579,
+        "weight": 0.05,
+        "contribution": -0.029,
+        "share_pct": 2.3
       },
       "vix": {
         "z": -0.343,
         "weight": 0.15,
         "contribution": -0.0514,
-        "share_pct": 4.2
+        "share_pct": 4.1
       },
       "cot_positioning": {
         "z": -1.532,
         "weight": 0.1,
         "contribution": -0.1532,
-        "share_pct": 12.5
+        "share_pct": 12.3
       },
       "spread_compression": {
         "z": -2.551,
         "weight": 0.15,
         "contribution": -0.3827,
-        "share_pct": 31.3
+        "share_pct": 30.8
       }
     }
   },
   "indicators": {
     "usdjpy": {
       "last": 157.83,
-      "chg_1d_pct": 0.17,
-      "chg_5d_pct": -0.62,
-      "z_5d": -0.6
+      "chg_1d_pct": -0.06,
+      "chg_5d_pct": 0.23,
+      "z_5d": 0.14
     },
     "audjpy": {
       "last": 109.802,
@@ -106,14 +112,14 @@
       "last": 107.29
     },
     "fx_vol": {
-      "realized_10d": 6.3,
-      "atr_pct_14": 0.89,
-      "vol_of_vol": 3.61,
-      "percentile_3y": 25.0
+      "realized_10d": 5.79,
+      "atr_pct_14": 0.83,
+      "vol_of_vol": 3.72,
+      "percentile_3y": 20.6
     },
     "nikkei": {
-      "last": 68956.72,
-      "chg_5d_pct": 5.25
+      "last": 68309.46,
+      "chg_5d_pct": 2.93
     },
     "mxnjpy": {
       "last": 8.669,
@@ -136,8 +142,8 @@
       "chg_5d_pct": -3.45
     },
     "btc": {
-      "last": 84527.65,
-      "chg_5d_pct": 0.08
+      "last": 84604.68,
+      "chg_5d_pct": 0.17
     },
     "ndx": {
       "last": 30807.93,
@@ -148,8 +154,8 @@
       "chg_5d_pct": -0.27
     },
     "us2y": {
-      "last": 4.61,
-      "chg_5d_bps": 13.8
+      "last": 4.635,
+      "chg_5d_bps": 13.5
     },
     "fx_implied": {
       "iv_atm_1m_pct": 10.65,
@@ -222,8 +228,8 @@
       }
     ],
     "sources": {
-      "boj": "cache",
-      "fomc": "cache",
+      "boj": "scrape",
+      "fomc": "scrape",
       "jp_cpi": "rule+overrides"
     }
   },
@@ -232,19 +238,19 @@
       "jpy_momentum_1h": {
         "z": 0.508,
         "bar_time": "2026-10-02T22:00:00+01:00",
-        "age_hours": 3.4,
+        "age_hours": 5.2,
         "bars": 521
       },
       "vix_1h": {
         "z": -0.868,
         "bar_time": "2026-10-02T21:00:00+01:00",
-        "age_hours": 4.4,
+        "age_hours": 6.2,
         "bars": 303
       },
       "fx_vol_1h": {
         "z": 0.068,
         "bar_time": "2026-10-02T22:00:00+01:00",
-        "age_hours": 3.4,
+        "age_hours": 5.2,
         "bars": 521
       }
     },
@@ -255,7 +261,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-10-02T22:00:00+01:00",
-    "computed_at": "2026-10-03T00:23:09+00:00",
+    "computed_at": "2026-10-03T02:13:40+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 49.3,
