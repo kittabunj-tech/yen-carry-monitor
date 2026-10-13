@@ -183,7 +183,7 @@
       null,
       null,
       null,
-      158.312
+      null
     ],
     "audjpy": [
       113.546,
@@ -275,7 +275,7 @@
       null,
       null,
       null,
-      110.174
+      110.295
     ],
     "mxnjpy": [
       9.3147,
@@ -367,7 +367,7 @@
       null,
       null,
       null,
-      8.649
+      8.627
     ],
     "nikkei": [
       66835.5391,
@@ -459,7 +459,7 @@
       null,
       null,
       null,
-      67292.3906
+      67777.5234
     ],
     "vix": [
       16.73,
@@ -551,7 +551,7 @@
       null,
       null,
       15.21,
-      null
+      15.47
     ],
     "move": [
       68.16,
@@ -1103,7 +1103,7 @@
       null,
       null,
       null,
-      2.167
+      null
     ],
     "fx_atr_pct_14": [
       0.4398,
@@ -1195,7 +1195,7 @@
       null,
       null,
       null,
-      0.7177
+      null
     ],
     "fx_vol_of_vol": [
       1.2209,
@@ -1287,7 +1287,7 @@
       null,
       null,
       null,
-      3.5685
+      null
     ]
   }
 }
