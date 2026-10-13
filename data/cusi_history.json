@@ -1,5 +1,5 @@
 {
-  "count": 800,
+  "count": 799,
   "levels": [
     {
       "name": "CALM",
@@ -24,23 +24,13 @@
   ],
   "history": [
     {
-      "date": "2023-09-12",
-      "value": 43.8,
-      "level": "WATCH"
-    },
-    {
-      "date": "2023-09-13",
-      "value": 44.3,
-      "level": "WATCH"
-    },
-    {
       "date": "2023-09-14",
-      "value": 42.0,
+      "value": 43.9,
       "level": "WATCH"
     },
     {
       "date": "2023-09-15",
-      "value": 41.2,
+      "value": 43.1,
       "level": "WATCH"
     },
     {
@@ -50,12 +40,12 @@
     },
     {
       "date": "2023-09-19",
-      "value": 42.6,
+      "value": 40.1,
       "level": "WATCH"
     },
     {
       "date": "2023-09-20",
-      "value": 44.6,
+      "value": 40.8,
       "level": "WATCH"
     },
     {
@@ -70,22 +60,22 @@
     },
     {
       "date": "2023-09-25",
-      "value": 45.7,
+      "value": 49.5,
       "level": "WATCH"
     },
     {
       "date": "2023-09-26",
-      "value": 46.9,
+      "value": 50.5,
       "level": "WATCH"
     },
     {
       "date": "2023-09-27",
-      "value": 44.4,
+      "value": 46.5,
       "level": "WATCH"
     },
     {
       "date": "2023-09-28",
-      "value": 43.2,
+      "value": 44.6,
       "level": "WATCH"
     },
     {
@@ -4020,7 +4010,12 @@
     },
     {
       "date": "2026-10-09",
-      "value": 46.2,
+      "value": 46.5,
+      "level": "WATCH"
+    },
+    {
+      "date": "2026-10-13",
+      "value": 49.2,
       "level": "WATCH"
     }
   ]
