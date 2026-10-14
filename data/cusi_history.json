@@ -1,5 +1,5 @@
 {
-  "count": 799,
+  "count": 800,
   "levels": [
     {
       "name": "CALM",
@@ -24,18 +24,13 @@
   ],
   "history": [
     {
-      "date": "2023-09-14",
-      "value": 43.9,
-      "level": "WATCH"
-    },
-    {
       "date": "2023-09-15",
       "value": 43.1,
       "level": "WATCH"
     },
     {
       "date": "2023-09-18",
-      "value": 40.2,
+      "value": 41.6,
       "level": "WATCH"
     },
     {
@@ -50,7 +45,7 @@
     },
     {
       "date": "2023-09-21",
-      "value": 48.7,
+      "value": 42.9,
       "level": "WATCH"
     },
     {
@@ -70,7 +65,7 @@
     },
     {
       "date": "2023-09-27",
-      "value": 46.5,
+      "value": 48.6,
       "level": "WATCH"
     },
     {
@@ -80,7 +75,7 @@
     },
     {
       "date": "2023-09-29",
-      "value": 42.6,
+      "value": 42.7,
       "level": "WATCH"
     },
     {
@@ -4014,8 +4009,18 @@
       "level": "WATCH"
     },
     {
+      "date": "2026-10-12",
+      "value": 41.1,
+      "level": "WATCH"
+    },
+    {
       "date": "2026-10-13",
-      "value": 49.2,
+      "value": 45.5,
+      "level": "WATCH"
+    },
+    {
+      "date": "2026-10-14",
+      "value": 49.0,
       "level": "WATCH"
     }
   ]
