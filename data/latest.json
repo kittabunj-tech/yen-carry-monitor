@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-24T04:58:52+07:00",
-  "data_as_of": "2026-10-23T00:00:00",
+  "generated_at": "2026-10-24T07:28:26+07:00",
+  "data_as_of": "2026-10-24T00:00:00",
   "schema_version": "1.0",
   "cusi": {
     "value": 53.9,
@@ -136,8 +136,8 @@
       "chg_5d_pct": -4.09
     },
     "btc": {
-      "last": 81265.36,
-      "chg_5d_pct": -0.92
+      "last": 80727.79,
+      "chg_5d_pct": -1.57
     },
     "ndx": {
       "last": 28957.53,
@@ -165,15 +165,27 @@
     "jgb_source": "MOF",
     "jgb_is_proxy": false,
     "missing": [],
-    "stale": [],
+    "stale": [
+      "move"
+    ],
     "tickers_ok": 13,
     "tickers_total": 13,
     "indicator_rows": 1491
   },
   "events": {
-    "risk_active": false,
+    "risk_active": true,
     "risk_window_days": 3,
-    "risk_events": [],
+    "risk_events": [
+      {
+        "type": "fomc",
+        "label": "FOMC Meeting",
+        "start_date": "2026-10-27",
+        "date": "2026-10-28",
+        "approx": false,
+        "source": "federalreserve",
+        "days_until": 3
+      }
+    ],
     "upcoming": [
       {
         "type": "fomc",
@@ -182,7 +194,7 @@
         "date": "2026-10-28",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 4
+        "days_until": 3
       },
       {
         "type": "boj_mpm",
@@ -191,7 +203,7 @@
         "date": "2026-10-30",
         "approx": false,
         "source": "boj",
-        "days_until": 6
+        "days_until": 5
       },
       {
         "type": "jp_cpi",
@@ -200,7 +212,7 @@
         "date": "2026-11-20",
         "approx": true,
         "source": "rule:third_friday",
-        "days_until": 28
+        "days_until": 27
       },
       {
         "type": "fomc",
@@ -209,7 +221,7 @@
         "date": "2026-12-09",
         "approx": false,
         "source": "federalreserve",
-        "days_until": 46
+        "days_until": 45
       },
       {
         "type": "boj_mpm",
@@ -218,7 +230,7 @@
         "date": "2026-12-18",
         "approx": false,
         "source": "boj",
-        "days_until": 55
+        "days_until": 54
       }
     ],
     "sources": {
@@ -232,20 +244,20 @@
       "jpy_momentum_1h": {
         "z": -0.373,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 2.0,
-        "bars": 522
+        "age_hours": 4.5,
+        "bars": 520
       },
       "vix_1h": {
         "z": 1.353,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 2.0,
+        "age_hours": 4.5,
         "bars": 308
       },
       "fx_vol_1h": {
         "z": 1.929,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 2.0,
-        "bars": 522
+        "age_hours": 4.5,
+        "bars": 520
       }
     },
     "stale": [],
@@ -255,7 +267,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-10-23T21:00:00+01:00",
-    "computed_at": "2026-10-23T21:58:52+00:00",
+    "computed_at": "2026-10-24T00:28:26+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 61.7,
