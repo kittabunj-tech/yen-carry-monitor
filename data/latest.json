@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-24T08:49:26+07:00",
+  "generated_at": "2026-10-24T14:06:46+07:00",
   "data_as_of": "2026-10-24T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 54.8,
+    "value": 54.4,
     "level": "WATCH",
     "level_color": "#d29922",
     "level_emoji": "🟡",
-    "change_1d": 3.7,
+    "change_1d": 3.2,
     "as_of": "2026-10-23",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,55 +25,55 @@
         "z": 0.798,
         "weight": 0.2,
         "contribution": 0.1596,
-        "share_pct": 22.1
+        "share_pct": 21.3
       },
       "mxnjpy_drawdown": {
         "z": 2.556,
         "weight": 0.05,
         "contribution": 0.1278,
-        "share_pct": 17.7
+        "share_pct": 17.1
       },
       "move": {
-        "z": 2.23,
+        "z": 2.229,
         "weight": 0.05,
         "contribution": 0.1115,
-        "share_pct": 15.5
+        "share_pct": 14.9
       },
       "nikkei_momentum": {
         "z": 1.277,
         "weight": 0.05,
         "contribution": 0.0639,
-        "share_pct": 8.9
+        "share_pct": 8.5
       },
       "spread_compression": {
         "z": 0.165,
         "weight": 0.15,
         "contribution": 0.0248,
-        "share_pct": 3.4
+        "share_pct": 3.3
       },
       "vix": {
         "z": 0.114,
         "weight": 0.15,
         "contribution": 0.0171,
-        "share_pct": 2.4
+        "share_pct": 2.3
       },
       "fx_realized_vol": {
         "z": -0.419,
         "weight": 0.1,
         "contribution": -0.0419,
-        "share_pct": 5.8
+        "share_pct": 5.6
       },
       "audjpy_drawdown": {
         "z": -0.352,
         "weight": 0.15,
         "contribution": -0.0528,
-        "share_pct": 7.3
+        "share_pct": 7.1
       },
       "cot_positioning": {
-        "z": -1.214,
+        "z": -1.486,
         "weight": 0.1,
-        "contribution": -0.1214,
-        "share_pct": 16.8
+        "contribution": -0.1486,
+        "share_pct": 19.9
       }
     }
   },
@@ -126,24 +126,24 @@
       "dd_from_20d_high_pct": -5.53
     },
     "cot_jpy": {
-      "net_position": 50207,
-      "noncomm_long": 191256,
-      "noncomm_short": 141049,
-      "z": 1.31,
-      "report_date": "2026-10-13",
-      "available_from": "2026-10-16"
+      "net_position": 69878,
+      "noncomm_long": 200186,
+      "noncomm_short": 130308,
+      "z": 1.57,
+      "report_date": "2026-10-20",
+      "available_from": "2026-10-23"
     },
     "dxy": {
-      "last": 101.752,
-      "chg_5d_pct": -0.09
+      "last": 101.81,
+      "chg_5d_pct": -0.03
     },
     "gold": {
-      "last": 4010.0,
-      "chg_5d_pct": -4.09
+      "last": 4007.9,
+      "chg_5d_pct": -4.14
     },
     "btc": {
-      "last": 80793.26,
-      "chg_5d_pct": -1.49
+      "last": 80784.49,
+      "chg_5d_pct": -1.31
     },
     "ndx": {
       "last": 28957.53,
@@ -168,7 +168,7 @@
       "expiry": "2026-11-20",
       "dte_days": 27,
       "spot": 58.42,
-      "asof": "2026-10-24T01:49:26+00:00"
+      "asof": "2026-10-24T07:06:46+00:00"
     }
   },
   "alerts": [],
@@ -177,7 +177,7 @@
     "jgb_is_proxy": false,
     "missing": [],
     "stale": [
-      "usdjpy"
+      "us10y"
     ],
     "tickers_ok": 13,
     "tickers_total": 13,
@@ -255,19 +255,19 @@
       "jpy_momentum_1h": {
         "z": -0.373,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 5.8,
+        "age_hours": 11.1,
         "bars": 520
       },
       "vix_1h": {
         "z": 1.353,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 5.8,
+        "age_hours": 11.1,
         "bars": 308
       },
       "fx_vol_1h": {
         "z": 1.929,
         "bar_time": "2026-10-23T21:00:00+01:00",
-        "age_hours": 5.8,
+        "age_hours": 11.1,
         "bars": 520
       }
     },
@@ -278,7 +278,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-10-23T21:00:00+01:00",
-    "computed_at": "2026-10-24T01:49:26+00:00",
+    "computed_at": "2026-10-24T07:06:46+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 61.7,
