@@ -1,13 +1,6 @@
 {
   "reports": [
     {
-      "report_date": "2022-09-27",
-      "available_from": "2022-09-30",
-      "net_speculative": -82556,
-      "noncomm_long": 22706,
-      "noncomm_short": 105262
-    },
-    {
       "report_date": "2022-10-04",
       "available_from": "2022-10-07",
       "net_speculative": -81623,
@@ -1490,6 +1483,13 @@
       "net_speculative": 69878,
       "noncomm_long": 200186,
       "noncomm_short": 130308
+    },
+    {
+      "report_date": "2026-10-27",
+      "available_from": "2026-10-30",
+      "net_speculative": 101591,
+      "noncomm_long": 225516,
+      "noncomm_short": 123925
     }
   ]
 }

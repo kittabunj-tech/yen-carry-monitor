@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-10-31T09:38:51+07:00",
+  "generated_at": "2026-10-31T15:16:00+07:00",
   "data_as_of": "2026-10-31T00:00:00",
   "schema_version": "1.0",
   "cusi": {
-    "value": 49.5,
+    "value": 48.8,
     "level": "WATCH",
     "level_color": "#d29922",
     "level_emoji": "🟡",
-    "change_1d": 2.8,
+    "change_1d": 2.1,
     "as_of": "2026-10-30",
     "weights": {
       "jpy_momentum": 0.2,
@@ -25,25 +25,25 @@
         "z": 0.775,
         "weight": 0.15,
         "contribution": 0.1162,
-        "share_pct": 15.9
+        "share_pct": 15.0
       },
       "mxnjpy_drawdown": {
         "z": 2.186,
         "weight": 0.05,
         "contribution": 0.1093,
-        "share_pct": 14.9
+        "share_pct": 14.1
       },
       "move": {
         "z": 1.886,
         "weight": 0.05,
         "contribution": 0.0943,
-        "share_pct": 12.9
+        "share_pct": 12.2
       },
       "vix": {
         "z": 0.203,
         "weight": 0.15,
         "contribution": 0.0304,
-        "share_pct": 4.1
+        "share_pct": 3.9
       },
       "fx_realized_vol": {
         "z": 0.008,
@@ -61,19 +61,19 @@
         "z": -0.606,
         "weight": 0.15,
         "contribution": -0.091,
-        "share_pct": 12.4
+        "share_pct": 11.8
       },
       "jpy_momentum": {
         "z": -0.687,
         "weight": 0.2,
         "contribution": -0.1374,
-        "share_pct": 18.8
+        "share_pct": 17.8
       },
       "cot_positioning": {
-        "z": -1.486,
+        "z": -1.887,
         "weight": 0.1,
-        "contribution": -0.1486,
-        "share_pct": 20.3
+        "contribution": -0.1887,
+        "share_pct": 24.4
       }
     }
   },
@@ -126,24 +126,24 @@
       "dd_from_20d_high_pct": -5.11
     },
     "cot_jpy": {
-      "net_position": 69878,
-      "noncomm_long": 200186,
-      "noncomm_short": 130308,
-      "z": 1.57,
-      "report_date": "2026-10-20",
-      "available_from": "2026-10-23"
+      "net_position": 101591,
+      "noncomm_long": 225516,
+      "noncomm_short": 123925,
+      "z": 1.95,
+      "report_date": "2026-10-27",
+      "available_from": "2026-10-30"
     },
     "dxy": {
-      "last": 101.964,
-      "chg_5d_pct": 0.15
+      "last": 101.88,
+      "chg_5d_pct": 0.07
     },
     "gold": {
-      "last": 3884.9,
-      "chg_5d_pct": -3.07
+      "last": 3898.9,
+      "chg_5d_pct": -2.72
     },
     "btc": {
-      "last": 77280.43,
-      "chg_5d_pct": -3.43
+      "last": 77288.25,
+      "chg_5d_pct": -3.4
     },
     "ndx": {
       "last": 28384.85,
@@ -154,8 +154,8 @@
       "chg_5d_pct": -0.57
     },
     "us2y": {
-      "last": 4.75,
-      "chg_5d_bps": null
+      "last": 4.573,
+      "chg_5d_bps": -17.7
     },
     "fx_implied": {
       "n_calls_used": 11,
@@ -168,7 +168,7 @@
       "expiry": "2026-11-20",
       "dte_days": 20,
       "spot": 58.19,
-      "asof": "2026-10-31T02:38:51+00:00"
+      "asof": "2026-10-31T08:16:00+00:00"
     }
   },
   "alerts": [],
@@ -176,9 +176,7 @@
     "jgb_source": "MOF",
     "jgb_is_proxy": false,
     "missing": [],
-    "stale": [
-      "us2y"
-    ],
+    "stale": [],
     "tickers_ok": 13,
     "tickers_total": 13,
     "indicator_rows": 1491
@@ -245,19 +243,19 @@
       "jpy_momentum_1h": {
         "z": 0.246,
         "bar_time": "2026-10-30T20:00:00+00:00",
-        "age_hours": 6.6,
+        "age_hours": 12.3,
         "bars": 518
       },
       "vix_1h": {
         "z": 1.455,
         "bar_time": "2026-10-30T20:00:00+00:00",
-        "age_hours": 6.6,
+        "age_hours": 12.3,
         "bars": 308
       },
       "fx_vol_1h": {
         "z": 1.272,
         "bar_time": "2026-10-30T20:00:00+00:00",
-        "age_hours": 6.6,
+        "age_hours": 12.3,
         "bars": 518
       }
     },
@@ -268,7 +266,7 @@
       "fx_vol_1h": 0.22
     },
     "as_of": "2026-10-30T20:00:00+00:00",
-    "computed_at": "2026-10-31T02:38:51+00:00",
+    "computed_at": "2026-10-31T08:16:00+00:00",
     "note": "1h bars · 3 components (jpy momentum / vix / fx vol)",
     "available": true,
     "value": 64.5,
