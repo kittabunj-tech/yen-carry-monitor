@@ -1,19 +1,11 @@
 {
-  "generated_at": "2026-10-31T08:16:00+00:00",
+  "generated_at": "2026-11-02T05:47:47+00:00",
   "sources": {
-    "boj": "scrape",
-    "fomc": "scrape",
+    "boj": "cache",
+    "fomc": "cache",
     "jp_cpi": "rule+overrides"
   },
   "events": [
-    {
-      "type": "jp_cpi",
-      "label": "Japan CPI (national)",
-      "start_date": "2026-10-16",
-      "date": "2026-10-16",
-      "approx": true,
-      "source": "rule:third_friday"
-    },
     {
       "type": "fomc",
       "label": "FOMC Meeting",
@@ -141,6 +133,14 @@
       "date": "2027-04-28",
       "approx": false,
       "source": "federalreserve"
+    },
+    {
+      "type": "jp_cpi",
+      "label": "Japan CPI (national)",
+      "start_date": "2027-05-21",
+      "date": "2027-05-21",
+      "approx": true,
+      "source": "rule:third_friday"
     },
     {
       "type": "fomc",
