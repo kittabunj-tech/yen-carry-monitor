@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-11-02T23:25:05+00:00",
+  "generated_at": "2026-11-03T03:59:11+00:00",
   "sources": {
-    "boj": "cache",
-    "fomc": "cache",
+    "boj": "scrape",
+    "fomc": "scrape",
     "jp_cpi": "rule+overrides"
   },
   "events": [
@@ -205,6 +205,14 @@
       "date": "2027-10-29",
       "approx": false,
       "source": "boj"
+    },
+    {
+      "type": "fomc",
+      "label": "FOMC Meeting",
+      "start_date": "2027-12-07",
+      "date": "2027-12-08",
+      "approx": false,
+      "source": "federalreserve"
     }
   ]
 }
