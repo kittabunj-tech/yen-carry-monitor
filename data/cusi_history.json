@@ -3375,22 +3375,22 @@
     },
     {
       "date": "2026-05-25",
-      "value": 43.6,
+      "value": 43.4,
       "level": "WATCH"
     },
     {
       "date": "2026-05-26",
-      "value": 46.6,
+      "value": 46.5,
       "level": "WATCH"
     },
     {
       "date": "2026-05-27",
-      "value": 44.8,
+      "value": 45.1,
       "level": "WATCH"
     },
     {
       "date": "2026-05-28",
-      "value": 45.0,
+      "value": 45.3,
       "level": "WATCH"
     },
     {
@@ -3405,7 +3405,7 @@
     },
     {
       "date": "2026-06-02",
-      "value": 42.9,
+      "value": 42.8,
       "level": "WATCH"
     },
     {
@@ -3430,7 +3430,7 @@
     },
     {
       "date": "2026-06-09",
-      "value": 56.0,
+      "value": 56.1,
       "level": "WATCH"
     },
     {
@@ -3440,7 +3440,7 @@
     },
     {
       "date": "2026-06-11",
-      "value": 56.4,
+      "value": 56.5,
       "level": "WATCH"
     },
     {
@@ -3490,7 +3490,7 @@
     },
     {
       "date": "2026-06-25",
-      "value": 54.2,
+      "value": 54.1,
       "level": "WATCH"
     },
     {
@@ -3750,32 +3750,32 @@
     },
     {
       "date": "2026-09-07",
-      "value": 68.6,
+      "value": 64.7,
       "level": "STRESS"
     },
     {
       "date": "2026-09-08",
-      "value": 71.1,
+      "value": 70.4,
       "level": "STRESS"
     },
     {
       "date": "2026-09-09",
-      "value": 69.1,
+      "value": 69.6,
       "level": "STRESS"
     },
     {
       "date": "2026-09-10",
-      "value": 67.4,
+      "value": 67.8,
       "level": "STRESS"
     },
     {
       "date": "2026-09-11",
-      "value": 60.3,
+      "value": 60.2,
       "level": "STRESS"
     },
     {
       "date": "2026-09-14",
-      "value": 65.0,
+      "value": 64.7,
       "level": "STRESS"
     },
     {
@@ -3815,7 +3815,7 @@
     },
     {
       "date": "2026-09-24",
-      "value": 43.1,
+      "value": 43.2,
       "level": "WATCH"
     },
     {
@@ -3840,7 +3840,7 @@
     },
     {
       "date": "2026-10-01",
-      "value": 48.9,
+      "value": 49.0,
       "level": "WATCH"
     },
     {
@@ -3880,7 +3880,7 @@
     },
     {
       "date": "2026-10-13",
-      "value": 45.4,
+      "value": 45.5,
       "level": "WATCH"
     },
     {
@@ -3895,12 +3895,12 @@
     },
     {
       "date": "2026-10-16",
-      "value": 55.3,
+      "value": 55.4,
       "level": "WATCH"
     },
     {
       "date": "2026-10-19",
-      "value": 52.0,
+      "value": 52.1,
       "level": "WATCH"
     },
     {
@@ -3955,7 +3955,7 @@
     },
     {
       "date": "2026-11-03",
-      "value": 50.7,
+      "value": 50.8,
       "level": "WATCH"
     },
     {
@@ -3995,27 +3995,27 @@
     },
     {
       "date": "2026-11-13",
-      "value": 39.4,
+      "value": 39.1,
       "level": "CALM"
     },
     {
       "date": "2026-11-16",
-      "value": 51.0,
+      "value": 50.7,
       "level": "WATCH"
     },
     {
       "date": "2026-11-17",
-      "value": 56.0,
+      "value": 55.8,
       "level": "WATCH"
     },
     {
       "date": "2026-11-18",
-      "value": 58.3,
+      "value": 58.2,
       "level": "WATCH"
     },
     {
       "date": "2026-11-19",
-      "value": 60.4,
+      "value": 60.1,
       "level": "STRESS"
     },
     {
