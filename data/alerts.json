@@ -1,14 +1,6 @@
 {
   "alerts": [
     {
-      "ts": "2026-07-23T15:19:12+00:00",
-      "type": "level_change",
-      "from": "CALM",
-      "to": "WATCH",
-      "value": 41.2,
-      "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก CALM เป็น WATCH (CUSI 41.2)"
-    },
-    {
       "ts": "2026-07-23T17:41:23+00:00",
       "type": "level_change",
       "from": "WATCH",
@@ -799,6 +791,14 @@
       "to": "STRESS",
       "value": 60.0,
       "reason": "ระดับ CUSI เปลี่ยนขึ้นจาก WATCH เป็น STRESS (CUSI 60.0)"
+    },
+    {
+      "ts": "2026-11-26T22:13:42+00:00",
+      "type": "level_change",
+      "from": "STRESS",
+      "to": "WATCH",
+      "value": 59.8,
+      "reason": "ระดับ CUSI เปลี่ยนลงจาก STRESS เป็น WATCH (CUSI 59.8)"
     }
   ]
 }
